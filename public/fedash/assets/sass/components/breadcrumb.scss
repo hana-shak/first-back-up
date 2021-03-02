@@ -1,0 +1,30 @@
+.breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 0px;
+
+    .breadcrumb-item {
+        &:first-child a {
+            margin-top: -2px;
+            background: $color-primary;
+            width: 20px;
+            height: 20px;
+            font-size: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            color: white;
+            justify-content: center;
+
+            &:hover {
+                background: lighten($color-primary, 5%);
+                color: white;
+            }
+        }
+
+        &.active {
+            color: white;
+            font-weight: 500;
+        }
+    }
+}

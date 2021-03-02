@@ -1,0 +1,15 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+    position: relative;
+    background-color: #e7ebf1;
+    color: black;
+    font-size: 14px;
+
+    &.no-scroll {
+        overflow: hidden !important;
+    }
+}
+
+* {
+    min-width: 0;
+}

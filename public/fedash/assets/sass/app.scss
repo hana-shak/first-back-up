@@ -1,0 +1,122 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:      Fedash - Bootstrap Multipurpose Admin Dashboard Template
+Version:      1.0
+Author:       laborasyon
+Author URL:   https://themeforest.net/user/laborasyon/portfolio
+
+[Table of contents]
+
+1. Vars
+2. Mixins
+3. Body
+4. Preloader
+5. Icon Block
+6. Error
+7. Form
+8. Form Wizard
+9. Page Header
+10. Lightbox
+11. Card
+12. Color
+13. Colorpicker
+14. Typography
+15. Button
+16. Progress
+17. Dropdown
+18. Badge
+19. Collapse
+20. Media Object
+21. Accordion
+22. Scrollbar
+23. Datepicker
+24. Dropdown
+25. Alert
+26. Breadcrumb
+27. Notification
+28. Pagination
+29. Nav
+30. Tour
+31. Sweet Alert
+32. Range Slider
+33. Select2
+34. Modal
+35. Timepicker
+36. Avatar
+37. File Upload
+38. Authentication
+39. Table
+40. Pricing Table
+41. Timeline
+42. List Group
+43. Toastr
+44. Nestable
+45. Slick
+46. Demo
+47. Navigation
+48. Layouts
+49. Header
+50. Footer
+51. Aside
+52. Dark
+52. Bright Dark
+53. Other
+54. Responsive
+--------------------------------------------------------------------- */
+
+@import "core/vars";
+@import "core/mixins";
+@import "components/body";
+@import "components/preloader";
+@import "components/icon-block";
+@import "components/error";
+@import "components/form";
+@import "components/form-wizard";
+@import "components/page-header";
+@import "components/lightbox";
+@import "components/card";
+@import "components/color";
+@import "components/colorpicker";
+@import "components/typography";
+@import "components/button";
+@import "components/progress";
+@import "components/dropdown";
+@import "components/badge";
+@import "components/collapse";
+@import "components/media-object";
+@import "components/accordion";
+@import "components/scrollbar";
+@import "components/datepicker";
+@import "components/alert";
+@import "components/breadcrumb";
+@import "components/notification";
+@import "components/pagination";
+@import "components/tour";
+@import "components/sweet-alert";
+@import "components/range-slider";
+@import "components/select2";
+@import "components/modal";
+@import "components/timepicker";
+@import "components/avatar";
+@import "components/file-upload";
+@import "components/authentication";
+@import "components/chat";
+@import "components/table";
+@import "components/timeline";
+@import "components/list-group";
+@import "components/toastr";
+@import "components/nestable";
+@import "components/slick";
+@import "components/webapp";
+@import "components/profile";
+@import "components/navigation";
+@import "components/demo";
+@import "layouts";
+@import "components/header";
+@import "components/aside";
+@import "dark";
+@import "bright-dark";
+@import "components/footer";
+@import "other";
+@import "responsive";

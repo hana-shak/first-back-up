@@ -1,0 +1,49 @@
+.profile-container {
+    @extend .card;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: rgba(white, .9);
+    position: relative;
+    padding-top: 50px;
+    margin-bottom: 0;
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(black, .5);
+    }
+
+    & > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .profile-menu {
+        background-color: rgb(255 255 255 / 20%);
+        padding: 10px 0;
+        margin-bottom: 8px;
+
+        ul {
+            li {
+                a {
+                    color: rgba(white, .9);
+
+                    &.active {
+                        background-color: white;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+}

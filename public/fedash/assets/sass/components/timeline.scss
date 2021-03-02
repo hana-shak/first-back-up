@@ -1,0 +1,26 @@
+.timeline {
+	.timeline-item {
+		position: relative;
+		display: flex;
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 2px;
+			bottom: 0px;
+			top: 48px;
+			left: 23px;
+			background: darken(#e7ebf1, 8%);
+		}
+
+		&:last-child {
+			&::before {
+				display: none;
+			}
+
+			padding-bottom: 0;
+			bottom: 0;
+		}
+	}
+}

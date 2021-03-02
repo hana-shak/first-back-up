@@ -1,0 +1,189 @@
+.web-app {
+    overflow: hidden;
+
+    .header {
+        margin-bottom: 0;
+    }
+
+    .layout-wrapper .content-wrapper > .content-body > .content {
+        height: calc(100vh - #{$header-height});
+    }
+
+    .navigation {
+        margin-bottom: 0 !important;
+    }
+
+    .content-footer {
+        display: none;
+    }
+}
+
+.app-block {
+    margin-bottom: 1.5rem;
+
+    .app-sidebar {
+        display: flex;
+        flex-direction: column;
+        border-radius: $default-border-radius;
+        padding-right: 1.5rem;
+
+        .list-group {
+            .list-group-item {
+                background: none;
+                padding-right: 0;
+                padding-left: 0;
+
+                &.active {
+                    background: none;
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    .app-content {
+        display: flex;
+        flex-direction: column;
+
+        .app-action {
+            display: flex;
+            align-items: center;
+            @extend .card;
+            padding: 1.5rem;
+
+            form {
+                flex: 1;
+            }
+        }
+
+        .app-content-body {
+            margin-bottom: 0;
+            flex: 1;
+            padding: 0;
+            position: static;
+
+            .app-lists {
+                ul.list-group {
+                    li.list-group-item {
+                        padding-top: 15px;
+                        padding-bottom: 15px;
+                        display: flex;
+                        align-items: center;
+                        transition: background-color .2s;
+                        border: none;
+                        @extend .card;
+                        margin-bottom: 15px;
+
+                        & > div:nth-child(1), & > div:nth-child(2), & > div:nth-child(3) {
+                            flex-shrink: 0;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: darken(white, 3%);
+                        }
+
+                        &.active {
+                            position: relative;
+                            color: black;
+                            background-color: darken(white, 3%);
+
+                            &:before {
+                                content: '';
+                                display: block;
+                                width: 2px;
+                                background-color: $color-primary;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                            }
+
+                            &.task-list {
+                                &:before {
+                                    background-color: $color-success;
+                                }
+
+                                .app-list-title {
+                                    text-decoration: line-through;
+                                    @extend .text-success
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .app-detail {
+                margin-bottom: 0;
+                position: absolute;
+                right: 0;
+                top: .50rem;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+                opacity: 0;
+                visibility: hidden;
+                transition: all .3s;
+                overflow: hidden;
+                background-color: white;
+                border-radius: $default-border-radius;
+
+                &.show {
+                    opacity: 1;
+                    visibility: visible;
+                    top: 0;
+                    overflow: auto;
+                }
+
+                .card-header {
+                    display: flex;
+                    align-items: center;
+                    padding: 1.5rem;
+                    border-bottom: $border-style;
+
+                    .app-detail-action-left {
+                        display: flex;
+                    }
+
+                    .app-detail-action-right {
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#compose, .app-block {
+    .ql-toolbar.ql-snow {
+        border: none;
+        padding: 0;
+    }
+
+    .ql-editor {
+        min-height: 70px;
+    }
+}
+
+.app-sortable-handle {
+    cursor: move;
+}
+
+.app-file-list {
+    border: $border-style;
+
+    .app-file-icon {
+        background-color: #f5f5f5;
+        padding: 2rem;
+        text-align: center;
+        font-size: 2rem;
+        border-bottom: $border-style;
+        border-top-right-radius: $default-border-radius;
+        border-top-left-radius: $default-border-radius;
+    }
+
+    &:hover {
+        border-color: #d7d7d7;
+    }
+}

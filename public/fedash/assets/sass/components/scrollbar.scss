@@ -1,0 +1,17 @@
+.nicescroll-cursors {
+    border: none !important;
+    background-color: rgba($color-dark, .20) !important;
+    width: 5px !important;
+}
+
+/* .navigation-nicescroll .nicescroll-cursors {
+    background-color: rgba(white, .50) !important;
+} */
+
+body {
+    &.hidden-navigation {
+        .navigation-nicescroll .nicescroll-cursors {
+            background-color: rgba(black, .20) !important;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.page-header {
+    margin-bottom: 30px;
+    position: relative;
+
+    & > * {
+        z-index: 1;
+        position: relative;
+    }
+
+    .nav-link:not(.active) {
+        color: rgba(white, .7);
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .breadcrumb {
+        margin: -10px 0px 20px;
+
+        .breadcrumb-item {
+            font-size: 12px;
+            font-weight: lighter;
+
+            &.active {
+                color: black;
+            }
+
+            a {
+                &:hover {
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+
+    .apexcharts-tooltip.light .apexcharts-tooltip-title {
+        background: #6b6b6b;
+        border-bottom-color: #8a8a8a;
+    }
+
+    .apexcharts-tooltip.light {
+        border: 1px solid #8a8a8a;
+        background: #4d4d4df5
+    }
+}
