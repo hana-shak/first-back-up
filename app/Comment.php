@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reply extends Model
+class Comment extends Model
 {
     protected $guarded =[];
 
@@ -15,7 +15,7 @@ class Reply extends Model
 
     public function discussion()
     {
-        return $this->belongsTo(Discussion::class, 'foreign_key' );
+        return $this->belongsTo('App\Discussion');
         //'id'  'foreign_key'   'local_key'
     }
 }

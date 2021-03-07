@@ -9,8 +9,10 @@
 
 {{-- {{$latestdis}} --}}
 @foreach ($latestdis as $item)
+{{-- {{$item->id}} --}}
+{{-- {{$items->replies->reply_body}} --}}
 {{-- {{$item->anonymous}}<hr> --}}
-{{-- {{$item->id}}<hr>
+ {{-- {{$item->id}}<hr>
 {{$item->disc_title}}<hr>
 {{$item->disc_body}}<hr>
 {{$item->created_at}}<hr>
@@ -18,7 +20,14 @@
 {{$item->anonymous}}<hr>
 {{auth::user()->name}}<hr>
 <hr>
-<img src="/discussion/images/{{$item->disc_image}}" height="100px" width="100px"> --}}
+<img src="/discussion/images/{{$item->disc_image}}" height="100px" width="100px">  --}}
+@endforeach
+
+@foreach ($item->replies as $m)
+<h4>5555</h4>
+<h4>{{$m->reply_body}}</h4>
+<hr>
+{{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
 @endforeach
 
 
@@ -36,6 +45,8 @@
 // @else
 // {{Auth::user()->name}}<hr>
 // @endif --}}
+{{-- <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i> <span class="i-name">icon-edit-2</span><span class="i-code">0xec78</span></div> --}}
+
 
 
 
@@ -80,6 +91,15 @@
                         {{$item->disc_body}}
                     </p>
                     <div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
+                    @if(auth::id() == $item->user->id )
+                    <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$item->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
+                    <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$item->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
+                    @endif
+
+
+
+
+
                     {{-- <p>
                         Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
                     </p> --}}
@@ -88,6 +108,7 @@
                         <small>Someone famous in <cite title="">Body of work</cite></small>
                     </blockquote> --}}
                 </div>
+
                 <!-- end post -->
              </div>
             <!-- end box_style_1 -->
@@ -96,7 +117,7 @@
 
             <!-- REPLY SECTION -->
 
-            
+
             @auth
             <h4>شارك بإجابة</h4>
             <form action="/reply" method="post" enctype="multipart/form-data">
@@ -104,7 +125,7 @@
                 <input name="invisible" type="hidden" value={{$item->id}}>
 
                 <div class="form-group">
-                    <textarea name="message"  name="reply_body" class="form-control style_2" style="height:150px;" placeholder="Message"></textarea>
+                    <textarea name="message"   class="form-control style_2" style="height:150px;" placeholder="Message"></textarea>
                 </div>
                 <div class="form-group">
                     <label>ادخال صورة</label>
@@ -127,11 +148,33 @@
 
             <!--  END REPLY -->
 
+
+
+
             <h4>الردود</h4>
 
-            <div id="comments">
+
+
+
+
+
+          <div id="comments">
                 <ol>
                     <li>
+
+
+                        @foreach ($item->replies as $m)
+                        <div class="comment_right clearfix">
+
+                            <p>
+                               {{$m->reply_body}}
+                            </p>
+                            {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
+                        </div>
+                        <hr>
+                        @endforeach
+
+                        <!---->
                         <div class="avatar">
                             <a href="#"><img src="{{URL::asset('main/img/avatar1.jpg')}}" alt="Image">
                             </a>
@@ -141,7 +184,6 @@
                                 Posted by <a href="#">Anna Smith</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
                             </div>
                             <p>
-                                Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
                             </p>
                         </div>
                         <ul>

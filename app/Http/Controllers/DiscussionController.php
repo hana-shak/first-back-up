@@ -97,29 +97,65 @@ class DiscussionController extends Controller
 
     public function showsingleDiscussion(Discussion $discussion, $id)
     {
-            $latestdis = Discussion::findOrFail($id)->get();
+
+            $replies = Reply::all();
+            // $latestdis = Discussion::findOrFail($id)->get();
+            $latestdis = Discussion::findOrFail($id)->replies;
+            //dd($latestdis);
+
+
+            // foreach($y as $key => $val){
+            //      echo"<br>";
+            //     return z($val->reply_body);
+            // };
+
+           // return($latestdis);
+           //$x = Reply::all();
+
+            return view('web.com.singlediscussion', compact('latestdis','replies'));
+
+
             //I will need to get subcategory & category name using relations and pass them using compact
-            return view('web.com.singlediscussion', compact('latestdis'));
-           //return dd($latestdis);
-           //return dd($latestdis);
+            //return view('web.com.singlediscussion', compact('latestdis','replies'));
+            //return dd( $x);
 
     }
 
-    //Reply on a discussion
-    public function createReply(Request $request)
-    {
-        //DO I NEED VALIDATION FOR REPLY
-        //$request->validate([
-        //'reply_body'     => 'required',
-        //]);
 
-        $replier = auth::user();
-        if($request->hasFile('image')) {
+    public function showAllDiscussions(){
+        $all_disc = Discussion::all();
+        return ("All discussionas");
+
+    }
+
+
+
+    public function store(Request $request)
+    {
+        return view('web.com.editdiscussion');
+    }
+
+    public function edit(Discussion $discussion, $id)
+    {
+        //for ajax
+        $cats =DiscussionCategory::all()->pluck('name','id');
+        $s = SubDiscussionCategory::all();
+        $discussion = Discussion::findOrFail($id)->get();
+        //$n = $discussion->subdiscussion;
+        //dd($n);
+        return view('web.com.editdiscussion',compact('discussion','cats'));
+    }
+
+
+    public function update(Request $request, Discussion $discussion,$id)
+    {
+        $user = auth::user();
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('discussion/images', $filename);
-        }else{
+        } else {
             $filename = "0";
         }
 
@@ -129,43 +165,36 @@ class DiscussionController extends Controller
             $anon = 0;
         }
 
-        Reply::create([
-            'discussions_id'  =>  $request->invisible,
-            'user_id'         =>  $replier->id,
-            'reply_body'      =>  $request->reply_body,
-            'reply_image'     =>  $filename,
-            'anonymous'       =>  $anon,
+        Discussion::where('id',$id)->update([
+            'sub_discussion_categories_id' =>  $request->subcat,
+            'user_id'        =>  $user->id,
+            'disc_title'     =>  $request->disc_title,
+            'disc_body'      =>  $request->disc_body,
+            'disc_image'     =>  $filename,
+            'anonymous'      =>  $anon,
         ]);
 
 
-            return ($request);
-           //return "I am Fabulous";
-           // return redirect()->route('singlediscussion');
 
 
+        $id = $request->id;
+        //$discussion = Discussion::findOrFail($id)->get();
+       return ($this->showafterupdate($id));
+
+        // dd($request);
+        //return "edited";
+    }
+
+    public function showafterupdate($id){
+
+        $latestdis = Discussion::findOrFail($id)->get();
+        return view('web.com.singlediscussion', compact('latestdis'));
 
     }
 
-
-    public function store(Request $request)
+    public function destroy(Discussion $discussion, $id)
     {
-        //
-    }
-
-    public function edit(Discussion $discussion)
-    {
-        //
-    }
-
-
-    public function update(Request $request, Discussion $discussion)
-    {
-        //
-    }
-
-
-    public function destroy(Discussion $discussion)
-    {
-        //
+        Discussion::destroy($id);
+        return ($this->showAllDiscussions());
     }
 }

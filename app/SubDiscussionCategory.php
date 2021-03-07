@@ -12,12 +12,12 @@ class SubDiscussionCategory extends Model
 
     public function discussioncategory()
     {
-        return $this->belongsTo(DiscussionCategory::class, '');
+        return $this->belongsTo(DiscussionCategory::class);
     }
 
     public function discussions()
     {
-        return $this->hasMany(Discussion::class);
+        return $this->hasMany(Discussion::class,'sub_discussion_categories_id');
     }
 
 }
