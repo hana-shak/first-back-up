@@ -15,17 +15,20 @@ class Discussion extends Model
 
     public function subdiscussion()
     {
-        return $this->belongsTo(SubDiscussionCategory::class,'discussion_id','foreign_key');
+        return $this->belongsTo(SubDiscussionCategory::class,'sub_discussion_categories_id');
     }
+
+
+
 
     public function replies()
     {
-        return $this->hasMany(Reply::class ,'discussions_id','foreign_key');
+        return $this->hasMany(Reply::class ,'discussions_id');
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class ,'discussions_id','foreign_key');
+        return $this->hasMany(Comment::class ,'discussions_id');
     }
 
 }

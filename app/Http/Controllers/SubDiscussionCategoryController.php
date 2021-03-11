@@ -140,4 +140,9 @@ class SubDiscussionCategoryController extends Controller
         //  return ($this->show($x));
 
     }
+
+    public function tt(){
+        $x= SubDiscussionCategory::find(2);
+        return $x->discussions;
+    }
 }

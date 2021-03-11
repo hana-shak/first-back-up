@@ -88,22 +88,23 @@ Route::post('/submit','DiscussionController@create');
 Route::get('/submit','DiscussionController@index');
 
 //Showing & viewing discussion with different options
-Route::get('singlediscussion','DiscussionController@showlatestDiscussion')->name('singlediscussion');
+Route::get('/singlediscussion','DiscussionController@showlatestDiscussion')->name('singlediscussion');
 Route::get('/single/{id}','DiscussionController@showsingleDiscussion');
 Route::get('/alldisc','DiscussionController@showAllDiscussions');
+Route::get('/userdisc','DiscussionController@discussionPerUser');
 
+//Relation test
+Route::get('/test','DiscussionController@test');
+Route::get('/tt','SubDiscussionCategoryController@tt');
 
 // update & delete single discussion
 Route::post('/update/{id}','DiscussionController@update');
 Route::get('/update/{id}','DiscussionController@edit');
 Route::get('/delete/{id}','DiscussionController@destroy');
 
+
 //Reply Routes
 Route::post('/reply','ReplyController@create');
 Route::get('/latestreply','ReplyController@latestReply');
-
-//Comment Routes
-// Route::post('/reply','CommentController@create');
-// Route::get('/latest','CommentController@latest');
 
 

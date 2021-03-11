@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class DiscussionController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->except('showsingleDiscussion');
+        $this->middleware('auth')->except('showsingleDiscussion','showAllDiscussions');
     }
 
     public function index()
@@ -88,44 +88,41 @@ class DiscussionController extends Controller
     public function showlatestDiscussion(Discussion $discussion)
     {
             $latestdis = Discussion::latest()->take(1)->get();
+
             //I will need to get subcategory & category name using relations and pass them using compact
             return view('web.com.singlediscussion', compact('latestdis'));
            //return dd($latestdis);
-           //return dd($latestdis);
+    }
+    //Adam test for reply relation
+    public function test(){
+        $x = Discussion::findOrFail(4);
+        // return $x->replies;
+        return $x->subdiscussion;
+
 
     }
 
     public function showsingleDiscussion(Discussion $discussion, $id)
     {
-
-            $replies = Reply::all();
-            // $latestdis = Discussion::findOrFail($id)->get();
-            $latestdis = Discussion::findOrFail($id)->replies;
-            //dd($latestdis);
-
-
-            // foreach($y as $key => $val){
-            //      echo"<br>";
-            //     return z($val->reply_body);
-            // };
-
-           // return($latestdis);
-           //$x = Reply::all();
-
-            return view('web.com.singlediscussion', compact('latestdis','replies'));
-
-
-            //I will need to get subcategory & category name using relations and pass them using compact
-            //return view('web.com.singlediscussion', compact('latestdis','replies'));
-            //return dd( $x);
+            $latestdis = Discussion::findOrFail($id)->get();
+            return view('web.com.singlediscussion', compact('latestdis'));
 
     }
 
 
+    //show all discussions in first community page
     public function showAllDiscussions(){
-        $all_disc = Discussion::all();
-        return ("All discussionas");
+        $all_disc = Discussion::latest('id')->get();
+       return view ('web.com.first',compact('all_disc'));
+        //dd($all_disc);
 
+    }
+    //this for profile/discussions section
+    public function discussionPerUser(){
+
+        $discs =auth()->user()->discussions;
+
+        return ($discs);
     }
 
 
@@ -137,6 +134,7 @@ class DiscussionController extends Controller
 
     public function edit(Discussion $discussion, $id)
     {
+        //because of relations, error in retrieving data
         //for ajax
         $cats =DiscussionCategory::all()->pluck('name','id');
         $s = SubDiscussionCategory::all();

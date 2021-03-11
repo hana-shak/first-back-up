@@ -15,7 +15,7 @@ class Reply extends Model
 
     public function discussion()
     {
-        return $this->belongsTo(Discussion::class, 'foreign_key' );
-        //'id'  'foreign_key'   'local_key'
+        return $this->belongsTo(Discussion::class);
+       
     }
 }

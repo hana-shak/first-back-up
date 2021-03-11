@@ -24,11 +24,21 @@
 @endforeach
 
 @foreach ($item->replies as $m)
-<h4>5555</h4>
+
+{{--
 <h4>{{$m->reply_body}}</h4>
-<hr>
+<h4>{{$m->reply_image}}</h4>
+<h4>{{$m->user->id}}</h4>
+<h4></h4>
+<hr> --}}
 {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
 @endforeach
+
+ {{-- @foreach ($item->sub as $s)
+{{$s->name}}
+@endforeach --}}
+
+
 
 
 {{-- @if($item->disc_image)
@@ -147,81 +157,27 @@
             @endguest
 
             <!--  END REPLY -->
-
-
-
-
-            <h4>الردود</h4>
-
-
-
-
-
-
+        <h4>الردود</h4>
           <div id="comments">
                 <ol>
+                    @foreach ($item->replies as $m)
                     <li>
-
-
-                        @foreach ($item->replies as $m)
-                        <div class="comment_right clearfix">
-
-                            <p>
-                               {{$m->reply_body}}
-                            </p>
-                            {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
-                        </div>
-                        <hr>
-                        @endforeach
-
+                        {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
                         <!---->
+
                         <div class="avatar">
                             <a href="#"><img src="{{URL::asset('main/img/avatar1.jpg')}}" alt="Image">
                             </a>
                         </div>
                         <div class="comment_right clearfix">
                             <div class="comment_info">
-                                Posted by <a href="#">Anna Smith</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
+                                رد بواسطة <a href="#">{{$m->user->name}}</a><span>|</span>  apr 2019 <span>|</span><a href="#">Reply</a>
                             </div>
-                            <p>
-                            </p>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="avatar">
-                                    <a href="#"><img src="{{URL::asset('main/img/avatar2.jpg')}}" alt="Image">
-                                    </a>
-                                </div>
-
-                                <div class="comment_right clearfix">
-                                    <div class="comment_info">
-                                        Posted by <a href="#">Tom Sawyer</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-                                    </div>
-                                    <p>
-                                        Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-                                    </p>
-                                    <p>
-                                        Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="avatar">
-                            <a href="#"><img src="{{URL::asset('main/img/avatar3.jpg')}}" alt="Image">
-                            </a>
+                            <p> {{$m->reply_body}}</p>
                         </div>
 
-                        <div class="comment_right clearfix">
-                            <div class="comment_info">
-                                Posted by <a href="#">Adam White</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-                            </div>
-                            <p>
-                                Cursus tellus quis magna porta adipiscin
-                            </p>
-                        </div>
                     </li>
+                    @endforeach
                 </ol>
             </div>
             <!-- End Comments -->
