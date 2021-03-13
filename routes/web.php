@@ -76,9 +76,6 @@ Route::get('/delete/{id}','SubDiscussionCategoryController@destroy');
 Auth::routes();
 
 //////////////////////// COMMUNITY PAGES ///////////////////////////////////////
-Route::get('/community',function(){
-    return view('web.com.first');
-});
 
 //Discussion Form - Ajax Idea
 Route::get('/start','DiscussionController@index');
@@ -89,9 +86,11 @@ Route::get('/submit','DiscussionController@index');
 
 //Showing & viewing discussion with different options
 Route::get('/singlediscussion','DiscussionController@showlatestDiscussion')->name('singlediscussion');
+
 Route::get('/single/{id}','DiscussionController@showsingleDiscussion');
-Route::get('/alldisc','DiscussionController@showAllDiscussions');
+Route::get('/community','DiscussionController@showAllDiscussions');
 Route::get('/userdisc','DiscussionController@discussionPerUser');
+Route::get('/dispersub/{id}','DiscussionController@singlesubdiscussion');
 
 //Relation test
 Route::get('/test','DiscussionController@test');
@@ -106,5 +105,9 @@ Route::get('/delete/{id}','DiscussionController@destroy');
 //Reply Routes
 Route::post('/reply','ReplyController@create');
 Route::get('/latestreply','ReplyController@latestReply');
+Route::post('/update/{id}','ReplyController@update');
+Route::get('/update/{id}','ReplyController@edit');
+Route::get('/delete/{id}','ReplyController@destroy');
 
+//Route::get('/dd','ReplyController@dddd');
 

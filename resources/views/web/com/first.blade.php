@@ -47,21 +47,26 @@
     <div class="row">
         <div class="col-lg-4 col-md-4">
             <div class="date">
-                <h5>{{$item->disc_title}} </h5>
+                <a href="/single/{{$item->id}}">
+                <h5>{{$item->disc_title}} </h5></a>
             </div>
         </div>
+
         <div class="col-lg-4 col-md-4">
             <div class="date">
-                <h5>أماكنها </h5>
+                <a href="/dispersub/{{$item->subdiscussion->id}}">
+                <h5>{{$item->subdiscussion->name}} </h5> </a>
             </div>
         </div>
         {{-- <div class="col-lg-6 col-md-5">
             <h3 class="hotel_booking">Hotel Mariott Paris</h3>
             <span>2 Adults / 2 Nights</span>
         </div> --}}
+
+
         <div class="col-lg-2 col-md-2">
             <ul class="info_booking">
-                <h5>الردود</h5>
+                <h5> {{$item->replies->count()}}</h5>
 
             </ul>
         </div>

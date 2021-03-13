@@ -81,32 +81,27 @@ class DiscussionController extends Controller
 
            // return "I am Fabulous";
               return redirect()->route('singlediscussion');
-
     }
 
 
     public function showlatestDiscussion(Discussion $discussion)
     {
             $latestdis = Discussion::latest()->take(1)->get();
-
-            //I will need to get subcategory & category name using relations and pass them using compact
-            return view('web.com.singlediscussion', compact('latestdis'));
-           //return dd($latestdis);
+            return view('web.com.latestdiscussion', compact('latestdis'));
+            //return dd($latestdis);
     }
+
     //Adam test for reply relation
-    public function test(){
-        $x = Discussion::findOrFail(4);
-        // return $x->replies;
-        return $x->subdiscussion;
-
-
-    }
+    // public function test(){
+    //     $x = Discussion::findOrFail(3);
+    //    return $x->replies->count();
+    //     //return $x->subdiscussion;
+    // }
 
     public function showsingleDiscussion(Discussion $discussion, $id)
     {
-            $latestdis = Discussion::findOrFail($id)->get();
-            return view('web.com.singlediscussion', compact('latestdis'));
-
+            $disc = Discussion::findorFail($id);
+            return view('web.com.singlediscussion', compact('disc'));
     }
 
 
@@ -119,13 +114,9 @@ class DiscussionController extends Controller
     }
     //this for profile/discussions section
     public function discussionPerUser(){
-
         $discs =auth()->user()->discussions;
-
         return ($discs);
     }
-
-
 
     public function store(Request $request)
     {
@@ -138,55 +129,54 @@ class DiscussionController extends Controller
         //for ajax
         $cats =DiscussionCategory::all()->pluck('name','id');
         $s = SubDiscussionCategory::all();
-        $discussion = Discussion::findOrFail($id)->get();
-        //$n = $discussion->subdiscussion;
-        //dd($n);
-        return view('web.com.editdiscussion',compact('discussion','cats'));
+        $disc = Discussion::findOrFail($id);
+        return view('web.com.editdiscussion',compact('disc','cats'));
     }
 
 
     public function update(Request $request, Discussion $discussion,$id)
     {
-        $user = auth::user();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move('discussion/images', $filename);
-        } else {
-            $filename = "0";
-        }
 
-        if($request->has('anonymous')){
-            $anon = 1;
+        //Not empty
+        if(($request->hasFile('image') || $request->disc_body ) && $request->disc_title ){
+
+            $user = auth::user();
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $ext = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $file->move('discussion/images', $filename);
+            } else {
+                $filename = "0";
+            }
+
+            if($request->has('anonymous')){
+                $anon = 1;
+            }else{
+                $anon = 0;
+            }
+
+            Discussion::where('id',$id)->update([
+                'sub_discussion_categories_id' =>  $request->subcat,
+                'user_id'        =>  $user->id,
+                'disc_title'     =>  $request->disc_title,
+                'disc_body'      =>  $request->disc_body,
+                'disc_image'     =>  $filename,
+                'anonymous'      =>  $anon,
+            ]);
+
+            $id = $request->id;
+            //$discussion = Discussion::findOrFail($id)->get();
+           return ($this->showafterupdate($id));
         }else{
-            $anon = 0;
+            return redirect()->back();
         }
-
-        Discussion::where('id',$id)->update([
-            'sub_discussion_categories_id' =>  $request->subcat,
-            'user_id'        =>  $user->id,
-            'disc_title'     =>  $request->disc_title,
-            'disc_body'      =>  $request->disc_body,
-            'disc_image'     =>  $filename,
-            'anonymous'      =>  $anon,
-        ]);
-
-
-
-
-        $id = $request->id;
-        //$discussion = Discussion::findOrFail($id)->get();
-       return ($this->showafterupdate($id));
-
-        // dd($request);
-        //return "edited";
     }
 
     public function showafterupdate($id){
 
-        $latestdis = Discussion::findOrFail($id)->get();
-        return view('web.com.singlediscussion', compact('latestdis'));
+        $disc = Discussion::findOrFail($id);
+        return view('web.com.singlediscussion', compact('disc'));
 
     }
 
@@ -194,5 +184,11 @@ class DiscussionController extends Controller
     {
         Discussion::destroy($id);
         return ($this->showAllDiscussions());
+    }
+
+    public function singlesubdiscussion($id){
+
+        $sub = SubDiscussionCategory::findOrFail($id);
+        return view('web.com.singlesubdiscussion',compact('sub'));
     }
 }

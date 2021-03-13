@@ -12,7 +12,7 @@ class SubDiscussionCategory extends Model
 
     public function discussioncategory()
     {
-        return $this->belongsTo(DiscussionCategory::class);
+        return $this->belongsTo(DiscussionCategory::class,'discussion_categories_id');
     }
 
     public function discussions()

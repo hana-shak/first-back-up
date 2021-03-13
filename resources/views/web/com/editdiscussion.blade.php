@@ -12,20 +12,16 @@
 
 @section('main')
 
-@foreach($discussion as $item)
+@foreach($disc as $item)
  {{-- {{$item->disc_title}}
 {{$item->disc_body}}
 {{$item->disc_image}}
 <hr>
 {{$item->ananyoums}} --}}
-
 {{-- {{$item->sub_discussion_categories_id}} --}}
-
 @endforeach
 
-{{-- @foreach ($n as $val)
-{{$val->subdiscussion->name}}
-@endforeach --}}
+
 <div class="container margin_60">
     <div class="row">
         <div class="col-md-8">
@@ -36,10 +32,10 @@
             </div>
             <div class="step">
                 <div id="message-contact"></div>
-                <form method="POST" action="/update/{{$item->id}}" id="contactform" enctype="multipart/form-data">
+                <form method="POST" action="/update/{{$disc->id}}" id="contactform" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="subcat" name="subcat" value=" {{$item->sub_discussion_categories_id}}">
-                    <input type="hidden" id="itemid" name="id" value=" {{$item->id}}">
+                    <input type="hidden" id="subcat" name="subcat" value=" {{$disc->sub_discussion_categories_id}}">
+                    <input type="hidden" id="itemid" name="id" value=" {{$disc->id}}">
 
 
 
@@ -63,23 +59,20 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>الفئة الفرعية</label>
-                                {{--Dependent Dropdown Select List/Subcategory--}}
+                                {{-- Dependent Dropdown Select List/Subcategory--}}
                                 {{-- <select class="form-control" name="subcategory" id="subcategory" >
                                     <option value="" ></option>
                                 </select>
-
                             </div>
-
                         </div>
                     </div> --}}
-
 
 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label> عنوان المناقشة</label>
-                                <input type="text" class="form-control"  name="disc_title" placeholder="عنوان المناقشة"  value="{{$item->disc_title}}">
+                                <input type="text" class="form-control"  name="disc_title" placeholder="عنوان المناقشة"  value="{{$disc->disc_title}}">
                             </div>
                         </div>
 
@@ -89,7 +82,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>المناقشة</label>
-                                <textarea rows="5" id="message_contact" name="disc_body" class="form-control" placeholder="اكتب هنا" style="height:200px;">{{$item->disc_body}}
+                                <textarea rows="5" id="message_contact" name="disc_body" class="form-control" placeholder="اكتب هنا" style="height:200px;">{{$disc->disc_body}}
                                 </textarea>
                             </div>
                         </div>
@@ -100,8 +93,8 @@
                                     <label>ادخال صورة</label>
                                     <input type="file" name="image" id="js-upload-files" multiple>
 
-                                    @if($item->disc_image)
-                                    <img src="/discussion/images/{{$item->disc_image}}"  width="100px" height="100px" />
+                                    @if($disc->disc_image)
+                                    <img src="/discussion/images/{{$disc->disc_image}}"  width="100px" height="100px" />
                                     @endif
 
                                 </div>

@@ -151,7 +151,7 @@
                                 </li>
                                  <li class="submenu">
                                     <a href="javascript:void(0);" class="show-submenu">المجتمع <i class="icon-down-open-mini"></i></a><ul>
-                                        <li><a href="">المجتمع</a></li>
+                                        <li><a href="/community">المجتمع</a></li>
                                         <li><a href="">قصص التشافي</a></li>
 
                                     </ul>

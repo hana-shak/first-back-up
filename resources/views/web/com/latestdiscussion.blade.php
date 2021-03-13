@@ -5,74 +5,73 @@
 
 @section('main')
 
-{{-- {{$disc->disc_image}}
-{{$disc->disc_title}}
-{{$disc->disc_body}}
-{{$disc->anonymous}}<br>
-{{$disc->user->name}}<br>
-{{$disc->user->id}}
-{{$disc->subdiscussion->name}}
-<hr>--}}
-@foreach ($disc->replies as $m)
-{{-- {{$m->id}}
-{{$m->reply_title}}
-{{$m->reply_body}}
-<hr> --}}
+
+
+{{-- {{$latestdis}} --}}
+<h3></h3>
+@foreach ($latestdis as $item)
+{{-- {{$item->id}} --}}
+{{-- {{$items->replies->reply_body}} --}}
+{{-- {{$item->anonymous}}<hr> --}}
+ {{-- {{$item->id}}<hr>
+{{$item->disc_title}}<hr>
+{{$item->disc_body}}<hr>
+{{$item->created_at}}<hr>
+{{$item->sub_discussion_categories_id}}<hr>
+{{$item->anonymous}}<hr>
+{{auth::user()->name}}<hr>
+<hr>
+<img src="/discussion/images/{{$item->disc_image}}" height="100px" width="100px">  --}}
 @endforeach
 
-
 <div class="container margin_60">
- <h5>   {{$disc->subdiscussion->name}}</h5>
-
     <div class="row">
 
         <div class="col-lg-9">
              <div class="box_style_1">
                 <div class="post nopadding">
-                    @if($disc->disc_image)
-                           <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" >
+                    @if($item->disc_image)
+                           <img src="/discussion/images/{{$item->disc_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" >
                     @else
-                     {{-- <h5> No PICTURE</h5> --}}
-                     @endif
+                    {{-- <h5> No PICTURE</h5> --}}
+                    @endif
                     <div class="post_info clearfix">
 
 
                          <div class="post-left" id="custom-info">
                             <ul>
-                                @if($disc->anonymous)
+                                @if($item->anonymous)
                                 <li><i class="icon-tags"></i>الناشر<a href="#index">مجهول</a>
                                 </li>
                                 @else
-                                <li><i class="icon-tags"></i>الناشر<a href="#profilepage">{{$disc->user->name}}</a>
-
+                                <li><i class="icon-tags"></i>الناشر<a href="#profilepage">{{$item->user->name}}</a>
+                                {{-- <li><i class="icon-tags"></i>الناشر<a href="#profilepage">{{$user->name}}</a> --}}
                                 </li>
                                 @endif
-                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{$disc->created_at}}</span>
+                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{$item->created_at}}</span>
                                 </li>
-                                 {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>
+                                {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>
                                 </li>
                                 <li><i class="icon-tags"></i>Tags <a href="#">Works</a> <a href="#">Personal</a>
                                 </li> --}}
-                              </ul>
+                             </ul>
                          </div>
 
                     </div>
-                    <h2>{{$disc->disc_title}}</h2>
+                    <h2>{{$item->disc_title}}</h2>
                     <p>
-                        {{$disc->disc_body}}
+                        {{$item->disc_body}}
                     </p>
-                    @if($disc->replies->count() !== 0)
-                    <div class="post-right"><i class="icon-comment"></i><a href="#">{{$m->count()}}  </a>رد</div>
+                    <div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
+                    @if(auth::id() == $item->user->id )
+                    <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$item->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
+                    <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$item->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                     @endif
-                    <div class="post-right"><i class="icon-comment"></i><a href="#">0</a>رد</div>
-                    @if(auth::id() == $disc->user->id )
-                    <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$disc->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
-                    <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$disc->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
-                    @endif
-                     {{-- <p>
+
+                    {{-- <p>
                         Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-                    </p>
-                    <blockquote class="styled">
+                    </p> --}}
+                    {{-- <blockquote class="styled">
                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
                         <small>Someone famous in <cite title="">Body of work</cite></small>
                     </blockquote> --}}
@@ -89,7 +88,7 @@
             <h4>شارك بإجابة</h4>
             <form action="/reply" method="post" enctype="multipart/form-data">
                 @csrf
-                <input name="invisible" type="hidden" value={{$disc->id}}>
+                <input name="invisible" type="hidden" value={{$item->id}}>
 
                 <div class="form-group">
                     <textarea name="message"   class="form-control style_2" style="height:150px;" placeholder="Message"></textarea>
@@ -114,42 +113,25 @@
             @endguest
 
             <!--  END REPLY -->
-         <h4>الردود</h4>
+        <h4>الردود</h4>
           <div id="comments">
                 <ol>
-                    @foreach($disc->replies as $m)
+                    @foreach ($item->replies as $m)
                     <li>
-
-
+                        {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
                         <!---->
 
-                      <div class="avatar">
+                        <div class="avatar">
                             <a href="#"><img src="{{URL::asset('main/img/avatar1.jpg')}}" alt="Image">
                             </a>
                         </div>
                         <div class="comment_right clearfix">
-
-                            @if($m->anonymous)
                             <div class="comment_info">
-                                رد بواسطة <a href="#">مجهول</a><span>|</span> {{$m->created_at}} <span>|</span><a href="#">Reply</a>
+                                رد بواسطة <a href="#">{{$m->user->name}}</a><span>|</span>  apr 2019 <span>|</span><a href="#">Reply</a>
                             </div>
-                                @else
-                                <div class="comment_info">
-                                    رد بواسطة <a href="#">{{$m->user->name}}</a><span>|</span> {{$m->created_at}} <span>|</span><a href="#">Reply</a>
-                                </div>
-                                @endif
-
-                                @if($m->reply_image)
-                                   <img src="/discussion/images/{{$m->reply_image}}" alt="Image" class="img-fluid"   height="150px" width="150px" >
-                                @else
-                                {{-- <h5> No PICTURE</h5> --}}
-                               @endif
                             <p> {{$m->reply_body}}</p>
                         </div>
-                        @if(auth::id() == $m->user->id )
-                        <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$m->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
-                        <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
-                        @endif
+
                     </li>
                     @endforeach
                 </ol>
