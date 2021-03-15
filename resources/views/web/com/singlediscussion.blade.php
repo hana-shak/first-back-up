@@ -63,12 +63,31 @@
                     </p>
                     @if($disc->replies->count() !== 0)
                     <div class="post-right"><i class="icon-comment"></i><a href="#">{{$m->count()}}  </a>رد</div>
-                    @endif
+                    @else
                     <div class="post-right"><i class="icon-comment"></i><a href="#">0</a>رد</div>
+                    @endif
+
+
                     @if(auth::id() == $disc->user->id )
                     <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$disc->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
                     <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$disc->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                     @endif
+
+                    {{-- relation is correct --}}
+                    {{$disc->likes->count()}}
+                    {{-- LIKE  --}}
+
+
+                    @auth
+
+                    @if(!($disc->likedBy(Auth::id())))
+                    <div title="Code: 0xe843" class="the-icons col-md-3"><i class="icon-thumbs-up"></i><a href="/like/{{$disc->id}}">لايك </a><span class="i-name"></span><span class="i-code"></span></div>
+                    @else
+                    <div title="Code: 0xe842" class="the-icons col-md-3"><i class="icon-thumbs-down"></i><a href="/unlike/{{$disc->id}}">مولايك </a> <span class="i-name"></span><span class="i-code"></span></div>
+                    @endif
+                    @endauth
+
+
                      {{-- <p>
                         Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
                     </p>
@@ -76,6 +95,10 @@
                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
                         <small>Someone famous in <cite title="">Body of work</cite></small>
                     </blockquote> --}}
+                    {{-- <div title="Code: 0xe843" class="the-icons col-md-3"><i class="icon-thumbs-up"></i><a href="/like/{{$disc->id}}">لايك </a><span class="i-name"></span><span class="i-code"></span></div>
+
+                    <div title="Code: 0xe842" class="the-icons col-md-3"><i class="icon-thumbs-down"></i><a href="/unlike/{{$disc->id}}">مولايك </a> <span class="i-name"></span><span class="i-code"></span></div> --}}
+
                 </div>
 
                 <!-- end post -->
@@ -150,9 +173,16 @@
                         <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$m->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
                         <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                         @endif
+
+                        @auth
+                        <div title="Code: 0xe885" class="the-icons col-md-3"><i class="icon-block"></i><a href="/report/{{$m->id}}">الابلاغ عن اساءة </a> <span class="i-name"></span><span class="i-code"></span></div>
+                        @endauth
+                        
                     </li>
+
                     @endforeach
                 </ol>
+
             </div>
             <!-- End Comments -->
         </div>

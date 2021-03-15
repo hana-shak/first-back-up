@@ -108,6 +108,12 @@ Route::get('/latestreply','ReplyController@latestReply');
 Route::post('/update/{id}','ReplyController@update');
 Route::get('/update/{id}','ReplyController@edit');
 Route::get('/delete/{id}','ReplyController@destroy');
+Route::get('/report/{id}','ReportController@create');
+
+//Like Routes
+Route::get('/like/{id}','LikeController@store');
+Route::get('/unlike/{id}','LikeController@destroy');
+
 
 //Route::get('/dd','ReplyController@dddd');
 

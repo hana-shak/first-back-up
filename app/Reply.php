@@ -18,4 +18,8 @@ class Reply extends Model
         return $this->belongsTo(Discussion::class,'discussions_id');
 
     }
+    public function reports(){
+
+        return $this->hasMany(Report::class);
+    }
 }

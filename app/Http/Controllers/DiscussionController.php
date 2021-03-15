@@ -191,4 +191,8 @@ class DiscussionController extends Controller
         $sub = SubDiscussionCategory::findOrFail($id);
         return view('web.com.singlesubdiscussion',compact('sub'));
     }
-}
+
+
+
+    }
+
