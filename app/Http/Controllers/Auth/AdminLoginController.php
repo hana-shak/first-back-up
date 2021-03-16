@@ -30,6 +30,7 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
 
+
         //validate the form data
         $this->validate($request, [
             'email'    => 'required|email',
@@ -38,20 +39,28 @@ class AdminLoginController extends Controller
 
         //Attempt to log the admin in
         //$credentials array contain email and password
-        // Auth::guard('admin')->attempt($credentials, $remember);
+          //Auth::guard('admin')->attempt($credentials, $remember);
 
-        if(Auth::guard('admin')->attempt(['email'=>$request->email, 'password'=>$request->password]))
+        if(Auth::guard('admin')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->remember))
         {
-            return "got ya..";
+           // return "got ya..";
               //if successful, then redirect to their inteneded location
+              return redirect()->intended('/super/alladmins');
               //return redirect('/super/alladmins');
         }
 
-             return "not yet..";
-             //if unsuccessful return back
-             //return redirect()->back();
+            //  return "not yet..";
+             //if unsuccessful return back to login page
+             return redirect()->back()->withInput($request->only('email','name'));
            //which user you choiced
            //return Auth::guard->user()
 
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        //return ($this->showLoginForm());
+        return redirect('/admin/login');
     }
 }

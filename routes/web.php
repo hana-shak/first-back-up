@@ -27,10 +27,12 @@ Route::get('/',function(){
 // Route::get('/home', 'HomeController@index')->name('home');   //Maybe I will use it next days
 
 //Login admin dashboard access  views are not ready for this, not working yest
-Route::prefix('/dashboard')->group(function(){
+Route::prefix('/admin')->group(function(){
     Route::get('/login'   ,'Auth\AdminLoginController@showLoginForm');
     Route::get('/submit','Auth\AdminLoginController@showLoginForm');
     Route::post('/submit'  ,'Auth\AdminLoginController@login');
+    Route::get('/logout', 'Auth\AdminLoginController@logout');
+
 
 });
 

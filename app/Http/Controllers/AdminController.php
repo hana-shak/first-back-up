@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+     //Worked 
+     public function __construct(){
+        $this->middleware('auth:admin');
+        //->except('')
+    }
     public function index()
     {
         //blank-empty page in dashboard

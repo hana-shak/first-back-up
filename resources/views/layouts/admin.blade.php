@@ -62,12 +62,40 @@
                             </button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
 
+        {{-- Profile Icon --}}
+        @if(Auth::guard('admin')->check())
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" title="User menu"
+               data-toggle="dropdown">
+                <figure class="avatar avatar-sm">
+                    <img src="{{URL::asset('fedash/assets/media/image/user/man_avatar3.jpg')}}"
+                    class="rounded-circle" alt="image">
 
+                    {{-- <img src='{{asset("admin/images")}}/{{Auth::guard('admin')->user()->image}}'
+                         class="rounded-circle" alt="image"> --}}
+                </figure>
+                <span class="ml-2 d-sm-inline d-none">
+                    {{Auth::guard('admin')->user()->name}}
+
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="profile.html" class="dropdown-item">
+                    <i class="ti-user mr-2"></i> Profile
+                </a>
+
+                <a href="/admin/logout" class="dropdown-item">
+                    <i class="ti-arrow-right mr-2"></i> Logout
+                </a>
+               
+            </div>
+        </li>
+
+        @endif
     </div>
     <!-- ./ header -->
 
