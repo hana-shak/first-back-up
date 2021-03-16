@@ -8,6 +8,7 @@ class Reply extends Model
 {
     protected $guarded =[];
 
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -20,6 +21,6 @@ class Reply extends Model
     }
     public function reports(){
 
-        return $this->hasMany(Report::class);
+        return $this->hasMany(Report::class,'replies_id');
     }
 }

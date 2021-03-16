@@ -71,6 +71,10 @@ Route::post('/updatesubcat/{id}','SubDiscussionCategoryController@update');
 Route::get('/updatesubcat/{id}','SubDiscussionCategoryController@show');
 Route::get('/delete/{id}','SubDiscussionCategoryController@destroy');
 
+//Reported Replies
+Route::get('/reported','ReportController@index');
+Route::get('/reportedreply/{id}','ReportController@show');
+Route::get('/deletereportedreply/{id}','ReportController@destroy');
 
 ///////////////////////// LOGIN + REGISTRATION /////////////////////////////////
 Auth::routes();
@@ -108,7 +112,8 @@ Route::get('/latestreply','ReplyController@latestReply');
 Route::post('/update/{id}','ReplyController@update');
 Route::get('/update/{id}','ReplyController@edit');
 Route::get('/delete/{id}','ReplyController@destroy');
-Route::get('/report/{id}','ReportController@create');
+Route::get('/report/{id}','ReportController@create')->middleware('auth');
+
 
 //Like Routes
 Route::get('/like/{id}','LikeController@store');

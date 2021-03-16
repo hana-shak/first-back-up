@@ -15,6 +15,6 @@ class Report extends Model
 
     public function reply(){
 
-        return $this->belongsTo(Reply::class);
+        return $this->belongsTo(Reply::class,'replies_id');
     }
 }

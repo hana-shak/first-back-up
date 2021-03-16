@@ -174,10 +174,10 @@
                         <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                         @endif
 
-                        @auth
+                        @if(auth::id() !== $m->user->id)
                         <div title="Code: 0xe885" class="the-icons col-md-3"><i class="icon-block"></i><a href="/report/{{$m->id}}">الابلاغ عن اساءة </a> <span class="i-name"></span><span class="i-code"></span></div>
-                        @endauth
-                        
+                        @endif
+
                     </li>
 
                     @endforeach
