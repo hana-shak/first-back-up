@@ -15,6 +15,7 @@
       <th>العدد</th>
       <th>رقمها</th>
       <th>عرض</th>
+      <th>حذف طلب الاساءة</th>
 
     </tr>
   </thead>
@@ -24,6 +25,10 @@
       <tr>
         <td>{{$count}}</td>
         <td>{{$report->id}}</td>
+        <td><a href="/reportedreply/{{$report->id}}">
+            <button type="button" class="btn btn-info">عرض</button>
+
+        </a></td>
         <td><a href="/reportedreply/{{$report->id}}">
             <button type="button" class="btn btn-info">عرض</button>
 

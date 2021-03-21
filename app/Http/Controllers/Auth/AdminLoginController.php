@@ -17,7 +17,7 @@ class AdminLoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:admin');
+        $this->middleware('guest:admin')->except('logout');
     }
 
 
@@ -51,7 +51,7 @@ class AdminLoginController extends Controller
 
             //  return "not yet..";
              //if unsuccessful return back to login page
-             return redirect()->back()->withInput($request->only('email','name'));
+             return redirect()->back()->withInput($request->only('email','remember'));
            //which user you choiced
            //return Auth::guard->user()
 

@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
-     //Worked 
+     //Worked
      public function __construct(){
         $this->middleware('auth:admin');
-        //->except('')
     }
     public function index()
     {

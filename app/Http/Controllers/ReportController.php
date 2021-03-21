@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ReportController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth:admin')->except('create');
+    }
+
     public function index()
     {
        // $reported = Report::all();
@@ -59,7 +63,14 @@ class ReportController extends Controller
         //
     }
 
+    //
+    public function destroyReply($id)
+    {
+       Reply::destroy($id);
+       return ($this->index());
+    }
 
+    //Deleting report itself not the reply
     public function destroy($id)
     {
        Report::destroy($id);

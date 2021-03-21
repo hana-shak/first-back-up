@@ -16,10 +16,6 @@
 use App\Customer;
 use App\Http\Controllers\DiscussionController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/',function(){
     return view('web.landing');
 });
@@ -80,7 +76,7 @@ Route::get('/deletereportedreply/{id}','ReportController@destroy');
 
 ///////////////////////// LOGIN + REGISTRATION /////////////////////////////////
 Auth::routes();
-
+// Route::get('/users/logout','Auth\LoginController@userLogout');
 //////////////////////// COMMUNITY PAGES ///////////////////////////////////////
 
 //Discussion Form - Ajax Idea

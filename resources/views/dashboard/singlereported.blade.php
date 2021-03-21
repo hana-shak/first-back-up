@@ -12,8 +12,8 @@
 {{$singlereport->user->name}}<br>
 
 {{$singlereport->id}}
-<a href="/deletereportedreply/{{$singlereport->id}}">
-    <button type="button" class="btn btn-info">عرض</button>
+<a href="/deletereportedreply/{{$singlereport->reply->id}}">
+    <button type="button" class="btn btn-info">حذف</button>
 
 </a>
 

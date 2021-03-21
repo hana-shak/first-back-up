@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class DiscussionCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(){
+        $this->middleware('auth:admin');
+        //->except('')
+    }
+
     public function index()
     {
         return view('dashboard.discussioncategory');
@@ -130,5 +130,5 @@ class DiscussionCategoryController extends Controller
            return redirect('/totalcategory');
     }
 
-    
+
 }
