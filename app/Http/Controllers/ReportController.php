@@ -66,8 +66,16 @@ class ReportController extends Controller
     //
     public function destroyReply($id)
     {
-       Reply::destroy($id);
-       return ($this->index());
+       $rep = Reply::findOrFail($id);
+      // dd('hey ya');
+      $report = $rep->reports;
+
+      foreach($rep->reports as $r)
+         $repo_id = $r->id;
+
+      Reply::destroy($id);
+      Report::destroy($repo_id);
+      return ($this->index());
     }
 
     //Deleting report itself not the reply

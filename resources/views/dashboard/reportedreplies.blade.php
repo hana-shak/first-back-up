@@ -23,14 +23,15 @@
       @php($count=0)
       @foreach($reported as $report)
       <tr>
-        <td>{{$count}}</td>
+        <td>{{$count +=1}}</td>
         <td>{{$report->id}}</td>
         <td><a href="/reportedreply/{{$report->id}}">
             <button type="button" class="btn btn-info">عرض</button>
 
         </a></td>
-        <td><a href="/reportedreply/{{$report->id}}">
-            <button type="button" class="btn btn-info">عرض</button>
+        <td><a href="/deletereportedreply/{{$report->id}}">
+
+            <button type="button" class="btn btn-danger">حذف</button>
 
         </a></td>
       </tr>

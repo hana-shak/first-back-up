@@ -12,7 +12,9 @@
 {{$singlereport->user->name}}<br>
 
 {{$singlereport->id}}
-<a href="/deletereportedreply/{{$singlereport->reply->id}}">
+{{$singlereport->reply->id}}
+<hr>
+<a href="/repdelete/{{$singlereport->reply->id}}">
     <button type="button" class="btn btn-info">حذف</button>
 
 </a>

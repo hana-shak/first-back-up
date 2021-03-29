@@ -16,6 +16,7 @@ class ReplyController extends Controller
         //->except('')
     }
 
+    
 
     public function index()
     {

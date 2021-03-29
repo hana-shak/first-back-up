@@ -132,6 +132,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        // 'email' => [
+        //     'required' => 'يجب إدخال البريد الإلكتروني',
+        // ],
     ],
 
     /*

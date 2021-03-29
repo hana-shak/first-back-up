@@ -72,7 +72,9 @@ Route::get('/delete/{id}','SubDiscussionCategoryController@destroy');
 //Reported Replies
 Route::get('/reported','ReportController@index');
 Route::get('/reportedreply/{id}','ReportController@show');
+Route::get('/deletereply/{id}','ReportController@destroyReply');
 Route::get('/deletereportedreply/{id}','ReportController@destroy');
+Route::get('/repdelete/{id}','ReportController@destroyReply');
 
 ///////////////////////// LOGIN + REGISTRATION /////////////////////////////////
 Auth::routes();
