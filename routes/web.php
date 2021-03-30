@@ -120,5 +120,5 @@ Route::get('/like/{id}','LikeController@store');
 Route::get('/unlike/{id}','LikeController@destroy');
 
 
-//Route::get('/dd','ReplyController@dddd');
+
 

@@ -6,6 +6,7 @@ use App\Discussion;
 use App\Reply;
 use App\DiscussionCategory;
 use App\SubDiscussionCategory;
+use Jenssegers\Date\Date;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,7 @@ class DiscussionController extends Controller
 
     public function showsingleDiscussion(Discussion $discussion, $id)
     {
+            Date::setLocale('ar');
             $disc = Discussion::findorFail($id);
             return view('web.com.singlediscussion', compact('disc'));
     }

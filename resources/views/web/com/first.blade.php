@@ -72,7 +72,8 @@
         </div>
         <div class="col-lg-2 col-md-2">
             <div class="booking_buttons">
-                <h5>اللايكات</h5>
+                <h5> {{$item->likes->count()}}</h5>
+
             </div>
         </div>
     </div>

@@ -3,6 +3,9 @@
 namespace App;
 use App\Auth;
 use App\User;
+use Illuminate\Support\Carbon;
+use Jenssegers\Date\Date;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
@@ -42,4 +45,5 @@ class Discussion extends Model
 
     }
 
+   
 }

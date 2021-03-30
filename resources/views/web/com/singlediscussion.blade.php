@@ -47,9 +47,12 @@
 
                                 </li>
                                 @endif
-                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{$disc->created_at}}</span>
+                                {{-- <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date($disc->created_at->diffForHumans('Y-m-d'))}}</span> --}}
+                                {{-- <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::createFromDate($disc->created_at)->format('l j F Y H:i:s')}}</span> --}}
+                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($disc->created_at)->diffForHumans()}}</span>
+                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($disc->created_at)->format('l j F Y ')}}</span>
                                 </li>
-                                 {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>
+                                 {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>->format('Y-m-d') dddd, MMMM D, YYYY h:mm
                                 </li>
                                 <li><i class="icon-tags"></i>Tags <a href="#">Works</a> <a href="#">Personal</a>
                                 </li> --}}
@@ -62,7 +65,7 @@
                         {{$disc->disc_body}}
                     </p>
                     @if($disc->replies->count() !== 0)
-                    <div class="post-right"><i class="icon-comment"></i><a href="#">{{$m->count()}}  </a>رد</div>
+                    <div class="post-right"><i class="icon-comment"></i><a href="#">{{$disc->replies->count()}}  </a>رد</div>
                     @else
                     <div class="post-right"><i class="icon-comment"></i><a href="#">0</a>رد</div>
                     @endif
