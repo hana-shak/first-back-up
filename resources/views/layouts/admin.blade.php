@@ -41,8 +41,9 @@
                 <i class="ti-menu"></i>
             </a>
             <div class="logo">
-                <a href=index.html>
-                    <img src="../../assets/media/image/logo.png" alt="logo">
+                <a href='/landingdash'>
+                    {{-- <img src="../../assets/media/image/logo.png" alt="logo"> --}}
+                    <img src="{{URL::asset('fedash/assets/media/image/five.png')}}" alt="logo" height='130' width="250">
                 </a>
             </div>
         </div>
@@ -72,7 +73,7 @@
             <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" title="User menu"
                data-toggle="dropdown">
                 <figure class="avatar avatar-sm">
-                    <img src="{{URL::asset('fedash/assets/media/image/user/man_avatar3.jpg')}}"
+                    <img src="{{URL::asset('fedash/assets/media/image/user/ava.png')}}"
                     class="rounded-circle" alt="image">
 
                     {{-- <img src='{{asset("admin/images")}}/{{Auth::guard('admin')->user()->image}}'
@@ -84,14 +85,14 @@
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="profile.html" class="dropdown-item">
-                    <i class="ti-user mr-2"></i> Profile
+                <a href="/super/singleadmin/ {{Auth::guard('admin')->user()->id}}" class="dropdown-item">
+                    <i class="ti-user mr-2"></i> الصفحة الشخصية
                 </a>
 
                 <a href="/admin/logout" class="dropdown-item">
-                    <i class="ti-arrow-right mr-2"></i> Logout
+                    <i class="ti-arrow-right mr-2"></i> الخروج
                 </a>
-               
+
             </div>
         </li>
 
@@ -109,7 +110,25 @@
                 <ul>
 
                     <li class="navigation-divider">
-                        <h3>الصفحات</h3></li>
+                        {{-- <h3>الصفحات</h3>--}}</li>
+                        <li>
+                            <a  href="/landingdash">
+                                <span class="nav-link-icon">
+                                    <i data-feather="home"></i>
+                                </span>
+                                <span>الصفحة الرئيسية <span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a target="_blank" href="/totalcategory">
+                                <span class="nav-link-icon">
+                                    <i class="ti-menu"></i>
+                                </span>
+                                <span>فئات المناقشة</span>
+                            </a>
+                        </li>
+
                     <li>
                         <a  href="/super/alladmins">
                             <span class="nav-link-icon">
@@ -118,38 +137,17 @@
                             <span>المسؤولين </span>
                         </a>
                     </li>
+
                     <li>
-                        <a target="_blank" href="/totalcategory">
-                            <span class="nav-link-icon">
-                                <i class="ti-menu"></i>
-                            </span>
-                            <span>فئات المناقشة</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="timeline.html">
+                        <a  href="/reported">
                             <span class="nav-link-icon">
                                 <i class="ti-close"></i>
                             </span>
                             <span>المحادثات المشتكي عليها</span>
                         </a>
                     </li>
-                    <li>
-                        <a  href="search-result.html">
-                            <span class="nav-link-icon">
-                                <i class="fa fa-file"></i>
-                            </span>
-                            <span>قصص التشافي</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="blank-page.html">
-                            <span class="nav-link-icon">
-                                <i class="ti-notepad"></i>
-                            </span>
-                            <span>Blank Page</span>
-                        </a>
-                    </li>
+
+
 
                 </ul>
             </div>
@@ -161,10 +159,10 @@
             <!-- content -->
             <div class="content ">
                 <div class="page-header">
-                        <div class="d-md-flex align-items-center justify-content-between">
-                            <h3 class="mb-0">صفحة متحكم الموقع</h3>
-                       </div>
-                </div>
+                       <div class="d-md-flex align-items-center justify-content-between">
+                             <h3 class="mb-0"> @yield('brief')</h3>
+                        </div>
+                 </div>
 
                      @yield('main')
             </div>

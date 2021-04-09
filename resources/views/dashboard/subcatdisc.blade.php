@@ -18,7 +18,7 @@
     {{$item->description}}
 </li>
  @endforeach --}}
- 
+
  <h3>{{$subcat->name}}</h3>
 
 <div>
@@ -35,7 +35,7 @@
 
             <th scope="col">العدد</th>
             <th scope="col">الاسم</th>
-            <th scope="col">الوصف</th>
+            {{-- <th scope="col">الوصف</th> --}}
             <th scope="col">الصورة</th>
             <th scope="col">عرض</th>
         </tr>
@@ -48,7 +48,7 @@
         <tr>
             <td>{{$count}}</td>
             <td> {{$item->name}}</td>
-            <td> {{$item->description}}</td>
+            {{-- <td> {{$item->description}}</td> --}}
             <td>  <img src="/discussion/images/{{$item->image}}" alt="" width="100px" height="100px"></td>
             <td><a href="/singlesub/{{$item->id}}">
                 <button type="button" class="btn btn-info">عرض الفئة{{$item->name}}</button>

@@ -6,12 +6,14 @@ use App\Discussion;
 use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Date\Date;
 
 
 class LikeController extends Controller
 {
     public function __construct()
     {
+        Date::setLocale('ar');
         $this->middleware('auth');
     }
     //Discussion like creation

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class DiscussionController extends Controller
 {
     public function __construct(){
+        Date::setLocale('ar');
         $this->middleware('auth')->except('showsingleDiscussion','showAllDiscussions');
     }
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Jenssegers\Date\Date;
 
 class AdminController extends Controller
 {
 
      //Worked
      public function __construct(){
+        Date::setLocale('ar');
         $this->middleware('auth:admin');
     }
     public function index()
@@ -26,13 +28,29 @@ class AdminController extends Controller
 
     public function validation($request)
     {
-        $request->validate([
-            'name'     => 'required|min:3',
+        // $request->validate([
+        //     'name'     => 'required|min:3',
+        //     'email'    => 'required|email',
+        //     'password' => 'required',
+        //     'role'     => 'required',
+        //     'mobile'   => 'required',
+        // ]);
+
+        $rules = [
+            'name'     => 'required|min:2',
             'email'    => 'required|email',
             'password' => 'required',
             'role'     => 'required',
             'mobile'   => 'required',
-        ]);
+        ];
+        $customMessages = [
+            'name.required' => 'يجب ادخال اسم صحيح، ممكن يحتوي على حروف وارقام ورموز ولا يحتوي على فراغات',
+            'email.required'=> 'يجب ادخال بريد الكتروني صحيح',
+            'password.required'=> 'يجب ادخال كلمة مرور صحيحة، تحوي على احرف وارقام ورمز واحد على الاقل، وان لاتكون اقل من 6 خانات',
+            'mobile.required'=> 'يجب ادخال رقم موبايل صحيح',
+            'role.required'=> 'يجب ملأ حقل الوظيفة',
+        ];
+        $this->validate($request, $rules, $customMessages);
 
 
 

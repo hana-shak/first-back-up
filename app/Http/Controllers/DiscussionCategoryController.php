@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\DiscussionCategory;
 use Illuminate\Http\Request;
+use Jenssegers\Date\Date;
 
 class DiscussionCategoryController extends Controller
 {
     public function __construct(){
+        Date::setLocale('ar');
         $this->middleware('auth:admin');
         //->except('')
+    }
+
+    public function landingdash(){
+       return view('dashboard.landingdash');
     }
 
     public function index()
@@ -28,11 +34,23 @@ class DiscussionCategoryController extends Controller
     }
     public function validation($request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'name'           => 'required|min:3',
+        //     'description'    => 'required',
+        //     'image'          => 'required',
+        // ]);
+        $rules = [
             'name'           => 'required|min:3',
             'description'    => 'required',
             'image'          => 'required',
-        ]);
+        ];
+        $customMessages = [
+            'name.required' => 'يجب ملأ حقل الاسم',
+            'description.required'=>'يجب ملأ حقل الوصف',
+            'image.required'=>' يجب اختيار صورة جديدة ',
+        ];
+        $this->validate($request, $rules, $customMessages);
+
     }
 
 
@@ -45,13 +63,14 @@ class DiscussionCategoryController extends Controller
         $ext = $file->getClientOriginalExtension();
         $filename = time() . '.' . $ext;
         $file->move('discussion/images', $filename);
-    } else {
-        $filename = "discussion.jpg";
+    }
+    else {
+        $filename = '1611290375.jpg';
     }
         DiscussionCategory::create([
             'name'           =>  $request->name,
             'description'    =>  $request->description,
-            'image'          => $filename,
+            'image'          =>  $filename,
         ]);
 
         // return "added new discussion to show allcategory";
@@ -98,17 +117,19 @@ class DiscussionCategoryController extends Controller
      */
     public function update(Request $request, DiscussionCategory $discussionCategory, $id)
     {
-        $this->validation($request);
+
+
 
         if ($request->hasFile('image')) {
          $file = $request->file('image');
          $ext = $file->getClientOriginalExtension();
          $filename = time() . '.' . $ext;
          $file->move('discussion/images', $filename);
-     } else {
-         $filename = "discussion.jpg";
-     }
-
+        }
+          else {
+         $filename ='1611290375.jpg';
+             }
+     $this->validation($request);
      DiscussionCategory::where('id',$id)->update([
         'name'           =>  $request->name,
         'description'    =>  $request->description,

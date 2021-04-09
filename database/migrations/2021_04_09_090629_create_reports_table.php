@@ -16,7 +16,10 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('replies_id');
+            $table->unsignedBigInteger('reply_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

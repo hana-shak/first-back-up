@@ -10,9 +10,11 @@ class SubDiscussionCategory extends Model
         'name', 'description', 'image','discussion_categories_id',
     ];
 
+
     public function discussioncategory()
     {
         return $this->belongsTo(DiscussionCategory::class,'discussion_categories_id');
+
     }
 
     public function discussions()

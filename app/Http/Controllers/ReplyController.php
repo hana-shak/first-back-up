@@ -6,17 +6,19 @@ use App\Reply;
 use App\Discussion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Date\Date;
 
 
 class ReplyController extends Controller
 {
 
     public function __construct(){
+        Date::setLocale('ar');
         $this->middleware('auth');
         //->except('')
     }
 
-    
+
 
     public function index()
     {
@@ -62,7 +64,7 @@ class ReplyController extends Controller
     }
 
 
-          public function latestReply(Reply $reply){
+        public function latestReply(Reply $reply){
 
          // $disc = Discussion::findOrFail(1)->replies;
           $disc = Reply::findOrFail(1)->get();
@@ -149,10 +151,10 @@ class ReplyController extends Controller
     public function destroy(Reply $reply,$id)
     {
         $rep = Reply::findOrFail($id);
-        $id = $rep->discussion->id;
+        $discussion_id = $rep->discussion->id;
         Reply::destroy($id);
 
-        return ($this->updatedreply($id));
+        return ($this->updatedreply($discussion_id));
 
     }
 }

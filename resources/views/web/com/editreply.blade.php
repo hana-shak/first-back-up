@@ -15,7 +15,7 @@
 
 
 <h4>شارك بإجابة</h4>
-<form action="/update/{{$reply->id}}" method="post" enctype="multipart/form-data">
+<form action="/repupdate/{{$reply->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <input name="invisible" type="hidden" value={{$reply->id}}>
 

@@ -173,8 +173,8 @@
                             <p> {{$m->reply_body}}</p>
                         </div>
                         @if(auth::id() == $m->user->id )
-                        <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$m->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
-                        <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
+                        <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/repupdate/{{$m->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
+                        <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/repdelete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                         @endif
 
                         @if(auth::id() !== $m->user->id)

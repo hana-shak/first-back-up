@@ -47,6 +47,7 @@ Route::prefix('/super')->group(function(){
 
 
 //DiscussionCategory dashboard pages
+Route::get('/landingdash','DiscussionCategoryController@landingdash');
 Route::get('/newdiscussion','DiscussionCategoryController@newdiscussioncategory');
 Route::post('/catdis','DiscussionCategoryController@create');
 Route::get('/catdis','DiscussionCategoryController@newdiscussioncategory');
@@ -64,10 +65,10 @@ Route::get('/new','SubDiscussionCategoryController@newsub');
 Route::post('/subcatdis','SubDiscussionCategoryController@create');
 Route::get('/subdiscussion/{id}','SubDiscussionCategoryController@subs');
 Route::get('/singlesub/{id}','SubDiscussionCategoryController@show');
-Route::get('/edit/{id}/subscatdis','SubDiscussionCategoryController@edit');
-Route::post('/updatesubcat/{id}','SubDiscussionCategoryController@update');
-Route::get('/updatesubcat/{id}','SubDiscussionCategoryController@show');
-Route::get('/delete/{id}','SubDiscussionCategoryController@destroy');
+Route::get('/sscedit/{id}/subscatdis','SubDiscussionCategoryController@edit');
+Route::post('/sscupdatesubcat/{id}','SubDiscussionCategoryController@update');
+Route::get('/sscupdatesubcat/{id}','SubDiscussionCategoryController@show');
+Route::get('/sscdelete/{id}','SubDiscussionCategoryController@destroy');
 
 //Reported Replies
 Route::get('/reported','ReportController@index');
@@ -109,9 +110,9 @@ Route::get('/delete/{id}','DiscussionController@destroy');
 //Reply Routes
 Route::post('/reply','ReplyController@create');
 Route::get('/latestreply','ReplyController@latestReply');
-Route::post('/update/{id}','ReplyController@update');
-Route::get('/update/{id}','ReplyController@edit');
-Route::get('/delete/{id}','ReplyController@destroy');
+Route::post('/repupdate/{id}','ReplyController@update');
+Route::get('/repupdate/{id}','ReplyController@edit');
+Route::get('/repdelete/{id}','ReplyController@destroy');
 Route::get('/report/{id}','ReportController@create')->middleware('auth');
 
 
@@ -121,4 +122,4 @@ Route::get('/unlike/{id}','LikeController@destroy');
 
 
 
-
+Route::get('/tot','SubDiscussionCategoryController@tot');

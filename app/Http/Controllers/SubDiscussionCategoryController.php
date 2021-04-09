@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\DiscussionCategory;
 use App\SubDiscussionCategory;
 use Illuminate\Http\Request;
+use Jenssegers\Date\Date;
 
 class SubDiscussionCategoryController extends Controller
  {
     public function __construct(){
+        Date::setLocale('ar');
         $this->middleware('auth:admin');
         //->except('')
     }
@@ -17,7 +19,7 @@ class SubDiscussionCategoryController extends Controller
     {
          $subcat = DiscussionCategory::findOrFail($id);
          $subs = $subcat->subdiscussions;
-         //return $subcats;
+         //return $subs;
          return view('dashboard.subcatdisc',compact('subcat','subs'));
     }
 
@@ -40,11 +42,27 @@ class SubDiscussionCategoryController extends Controller
 
     public function validation($request)
     {
-        $request->validate([
+        // $request->validate([
+        //     'name'           => 'required|min:3',
+        //     'description'    => 'required',
+
+        // ]);
+        $rules = [
             'name'           => 'required|min:3',
             'description'    => 'required',
-            'image'          => 'required',
-        ]);
+            'discussion_categories_id' => 'required',
+            'image'=>'required',
+        ];
+        $customMessages = [
+            'name.required' => 'يجب ملأ حقل الاسم',
+            'description.required'=>'يجب ملأ حقل الوصف',
+            'discussion_categories_id.required'=> 'يجب اختيار فئة رئيسية',
+            'image.required'=>'يجب اختيار صورة جديدة ',
+
+        ];
+        $this->validate($request, $rules, $customMessages);
+
+
     }
 
     /**
@@ -62,8 +80,9 @@ class SubDiscussionCategoryController extends Controller
          $ext = $file->getClientOriginalExtension();
          $filename = time() . '.' . $ext;
          $file->move('discussion/images', $filename);
-     } else {
-         $filename = "discussion.jpg";
+     }
+     else {
+         $filename = "1611290375.jpg";
      }
         SubDiscussionCategory::create([
              'name'           =>  $request->name,
@@ -99,16 +118,18 @@ class SubDiscussionCategoryController extends Controller
      */
     public function update(Request $request, SubDiscussionCategory $subDiscussionCategory, $id)
     {
-        //  $this->validation($request);
+         $this->validation($request);
 
         if ($request->hasFile('image')) {
          $file = $request->file('image');
          $ext = $file->getClientOriginalExtension();
          $filename = time() . '.' . $ext;
          $file->move('discussion/images', $filename);
-     } else {
-         $filename = "subdiscussion.jpg";
      }
+    //  else {
+
+    //     $filename ='1611290375.jpg';
+    //  }
 
      SubDiscussionCategory::where('id',$id)->update([
         'name'           =>  $request->name,
@@ -131,17 +152,25 @@ class SubDiscussionCategoryController extends Controller
      */
     public function destroy(SubDiscussionCategory $subDiscussionCategory ,$id)
     {
-        // $x =  $subDiscussionCategory->discussioncategory;
-        // $xx = $x->id;
-        // dd($xx);
+        $subdis= SubDiscussionCategory::find($id);
+        $cat_id = $subdis->discussioncategory->id;
         SubDiscussionCategory::destroy($id);
-          return "Deleted";
-        //  return ($this->show($x));
-
+        return ($this->index($cat_id));
     }
 
-    public function tt(){
-        $x= SubDiscussionCategory::find(2);
-        return $x->discussions;
+    // public function tt(){
+    //     $x= SubDiscussionCategory::find(2);
+    //     return $x->discussions;
+    // }
+
+    public function tot(){
+        $x= SubDiscussionCategory::find(3);
+        $xx = $x->discussioncategory;
+        dd($xx);
+        $y = $x->discussion_categories_id;
+    //return((int)$y);
+       $cat_id = DiscussionCategory::where('id',$y)->get();
+
+     return $cat_id;
     }
 }

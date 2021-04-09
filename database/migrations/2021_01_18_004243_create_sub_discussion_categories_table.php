@@ -15,7 +15,8 @@ class CreateSubDiscussionCategoriesTable extends Migration
     {
         Schema::create('sub_discussion_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('discussion_categories_id')->nullable();
+            $table->unsignedBigInteger('discussion_categories_id');
+            $table->foreign('discussion_categories_id')->references('id')->on('discussion_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('image')->nullable();

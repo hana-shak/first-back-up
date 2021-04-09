@@ -5,6 +5,11 @@
 
 @endsection
 
+@section('brief')
+
+@endsection
+
+
 @section('main')
 
 
@@ -22,7 +27,7 @@
 
             <th scope="col">العدد</th>
             <th scope="col">الاسم</th>
-            <th scope="col">الوصف</th>
+            {{-- <th scope="col">الوصف</th> --}}
             <th scope="col">عرض الفئة</th>
             <th scope="col">الفئات الفرعية<th>
         </tr>
@@ -34,7 +39,7 @@
         <tr>
             <td>{{$count}}</td>
             <td>{{$singlediscussioncategory->name}}</td>
-            <td>{{$singlediscussioncategory->description}}</td>
+            {{-- <td>{{$singlediscussioncategory->description}}</td> --}}
             <td><a href="/singlediscussion/{{$singlediscussioncategory->id}}">
                 <button type="button" class="btn btn-info">عرض الفئة{{$singlediscussioncategory->name}}</button>
             </a>

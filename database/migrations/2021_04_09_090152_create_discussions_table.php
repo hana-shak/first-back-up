@@ -15,11 +15,14 @@ class CreateDiscussionsTable extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('sub_discussion_categories_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sub_discussion_categories_id');
+            $table->foreign('sub_discussion_categories_id')->references('id')->on('sub_discussion_categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('disc_title');
             $table->text('disc_body')->nullable();
             $table->text('disc_image')->nullable();
+            $table->boolean('anonymous')->nullable();
             $table->timestamps();
         });
     }
