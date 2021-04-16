@@ -16,9 +16,7 @@
 use App\Customer;
 use App\Http\Controllers\DiscussionController;
 
-Route::get('/',function(){
-    return view('web.landing');
-});
+Route::get('/community','DiscussionController@showAllDiscussions');
 
 // Route::get('/home', 'HomeController@index')->name('home');   //Maybe I will use it next days
 
@@ -123,3 +121,8 @@ Route::get('/unlike/{id}','LikeController@destroy');
 
 
 Route::get('/tot','SubDiscussionCategoryController@tot');
+
+
+//All category and sub cats, single cat, single sub->all discussions
+Route::get('/', 'DiscussionCategoryController@eczematee');
+Route::get('/onecategory/{id}', 'SubDiscussionCategoryController@onecategory');

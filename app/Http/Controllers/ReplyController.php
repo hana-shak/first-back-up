@@ -67,9 +67,9 @@ class ReplyController extends Controller
         public function latestReply(Reply $reply){
 
          // $disc = Discussion::findOrFail(1)->replies;
-          $disc = Reply::findOrFail(1)->get();
+          //$disc = Reply::findOrFail(1)->get();
 
-          return ($disc);
+          //return ($disc);
 
                   }
 

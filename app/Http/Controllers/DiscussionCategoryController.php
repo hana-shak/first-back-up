@@ -10,8 +10,7 @@ class DiscussionCategoryController extends Controller
 {
     public function __construct(){
         Date::setLocale('ar');
-        $this->middleware('auth:admin');
-        //->except('')
+        $this->middleware('auth:admin')->except('eczematee');
     }
 
     public function landingdash(){
@@ -23,6 +22,7 @@ class DiscussionCategoryController extends Controller
         return view('dashboard.discussioncategory');
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -152,4 +152,12 @@ class DiscussionCategoryController extends Controller
     }
 
 
+
+    // Public Website
+    // landing page for all users , no need for registration or sth else
+    public function eczematee(){
+
+        $discussioncategory = DiscussionCategory::orderByDesc('id')->get();
+        return view('web.com.landing',compact('discussioncategory'));
+    }
 }

@@ -1,3 +1,6 @@
+{{-- Instead of first page --}}
+
+
 @extends('layouts.public')
 @section('title')
 مجتمع أكزيمتي
@@ -7,7 +10,7 @@
 <div>
     <h1>يا أهلا وسهلا فيكم</h1>
     <h4>It will contain listed duscussions</h4>
-    <a href="/start">ابدأ نقاشك</a>
+     <a href="/start">ابدأ نقاشك</a>
     <hr>
     <hr>
 </div>
@@ -78,12 +81,6 @@
         </div>
     </div>
     @endforeach
-
-{{-- Cards View for Categories --}}
-<div>
-
-    
-</div>
 
 </div>
 <!-- End strip booking -->

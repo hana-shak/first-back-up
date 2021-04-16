@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDiscussionsTable extends Migration
+class CreateRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateDiscussionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('discussions', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sub_discussion_categories_id');
-            $table->foreign('sub_discussion_categories_id')->references('id')->on('sub_discussion_categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('discussions_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('disc_title');
-            $table->text('disc_body')->nullable();
-            $table->text('disc_image')->nullable();
+            $table->foreign('discussions_id')->references('id')->on('discussions')->onDelete('cascade');
+            $table->text('reply_body')->nullable();
+            $table->text('reply_image')->nullable();
             $table->boolean('anonymous')->nullable();
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateDiscussionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discussions');
+        Schema::dropIfExists('replies');
     }
 }

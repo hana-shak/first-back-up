@@ -31,7 +31,7 @@
         </a></td>
         <td><a href="/deletereportedreply/{{$report->id}}">
 
-            <button type="button" class="btn btn-danger">حذف</button>
+            <button type="button" class="btn btn-danger"> عدم الموافقة على الطلب</button>
 
         </a></td>
       </tr>

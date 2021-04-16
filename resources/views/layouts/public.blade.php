@@ -89,6 +89,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                        <a class="dropdown-item" href="/profile">
+                                         الملف الشخصي
+                                     </a>
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
@@ -98,6 +103,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
+
                                     </div>
                                 </li>
                             @endguest
@@ -113,8 +119,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-3">
+                        {{-- <div id="logo_home">
+                            <h1><a href="index.html" title="City tours travel template">أكزيمتي</a></h1>
+                        </div> --}}
                         <div id="logo_home">
-                            <h1><a href="index.html" title="City tours travel template">City Tours travel template</a></h1>
+                            <a href="/community" title="City tours travel template">
+                                <img src="{{URL::asset('fedash/assets/media/image/five.png')}}" alt="logo" height='95' width="250">
+
+                            </a>
                         </div>
                     </div>
                     <nav class="col-9">
@@ -125,17 +137,8 @@
                             </div>
                             <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                            <ul>
-                                <li class="submenu">
-                                    <a href="javascript:void(0);" class="show-submenu">Eczema 101 <i class="icon-down-open-mini"></i></a>
-                                    <ul>
-                                        <li><a href="index.html">Owl Carousel Slider</a></li>
 
-                                        </li>
-                                        <li><a href="index_12.html">Layer slider</a></li>
-
-                                    </ul>
-                                </li>
-                                <li class="submenu">
+                                {{-- <li class="submenu">
                                     <a href="javascript:void(0);" class="show-submenu">Living with Eczema <i class="icon-down-open-mini"></i></a>
                                     <ul>
                                         <li><a href="all_tours_list.html">All tours list</a></li>
@@ -148,13 +151,28 @@
                                         <li><a href="single_tour_working_booking.php">Single tour working booking</a></li>
 
                                     </ul>
-                                </li>
+                                </li> --}}
                                  <li class="submenu">
-                                    <a href="javascript:void(0);" class="show-submenu">المجتمع <i class="icon-down-open-mini"></i></a><ul>
-                                        <li><a href="/community">المجتمع</a></li>
-                                        <li><a href="">قصص التشافي</a></li>
+                                    <a href="/community" class="show-submenu">المجتمع </a><ul>
+                                        {{-- <li><a href="/community">المجتمع</a></li> --}}
+                                        {{-- <li><a href="">قصص التشافي</a></li> --}}
 
                                     </ul>
+                                </li>
+
+                                <li class="submenu">
+                                    <a href="/start" class="show-submenu">ابدأ مناقشتك من هنا</a>
+                                    {{-- <ul>
+                                        <li><a href="index.html">Owl Carousel Slider</a></li> javascript:void(0);
+
+                                        </li>
+                                        <li><a href="index_12.html">Layer slider</a></li>
+
+                                    </ul> --}}
+                                </li>
+                                <li class="submenu">
+                                    <a href="/about" class="show-submenu">من نحن</a>
+
                                 </li>
 
                             </ul>
@@ -294,7 +312,7 @@
                                 <li><a href="#"><i class="icon-vimeo"></i></a></li>
                                 <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                             </ul>
-                            <p>© Citytours 2018</p>
+                            <p>© Eczematee 2021</p>
                         </div>
                     </div>
                 </div><!-- End row -->

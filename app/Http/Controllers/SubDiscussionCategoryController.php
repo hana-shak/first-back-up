@@ -11,8 +11,7 @@ class SubDiscussionCategoryController extends Controller
  {
     public function __construct(){
         Date::setLocale('ar');
-        $this->middleware('auth:admin');
-        //->except('')
+        $this->middleware('auth:admin')->except('onesubcat');
     }
     //This method to show single category discussion, lists all subs for this cat
     public function index($id)
@@ -164,13 +163,30 @@ class SubDiscussionCategoryController extends Controller
     // }
 
     public function tot(){
-        $x= SubDiscussionCategory::find(3);
-        $xx = $x->discussioncategory;
-        dd($xx);
-        $y = $x->discussion_categories_id;
+        // $x= SubDiscussionCategory::find(3);
+        // $xx = $x->discussioncategory;
+        // dd($xx);
+        // $y = $x->discussion_categories_id;
     //return((int)$y);
-       $cat_id = DiscussionCategory::where('id',$y)->get();
+    //    $cat_id = DiscussionCategory::where('id',$y)->get();
 
-     return $cat_id;
+    //  return $cat_id;
     }
+
+    //Public Website
+    //This method to show single category discussion, lists all subs for this cat
+    public function onecategory($id){
+
+        $subcat = DiscussionCategory::findOrFail($id);
+        $subs = $subcat->subdiscussions;
+         //return $subs;
+         return view('web.com.singlecategory',compact('subcat','subs'));
+    }
+
+     //This method to show single sub category discussion
+     public function onesubcat($id)
+     {
+         $subdis = SubDiscussionCategory::findOrFail($id);
+         return view('dashboard.singlesubdis',compact('subdis'));
+     }
 }

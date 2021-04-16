@@ -9,7 +9,7 @@
 
 {{-- {{$latestdis}} --}}
 <h3></h3>
-@foreach ($latestdis as $item)
+ @foreach ($latestdis as $item)
 {{-- {{$item->id}} --}}
 {{-- {{$items->replies->reply_body}} --}}
 {{-- {{$item->anonymous}}<hr> --}}
@@ -22,7 +22,7 @@
 {{auth::user()->name}}<hr>
 <hr>
 <img src="/discussion/images/{{$item->disc_image}}" height="100px" width="100px">  --}}
-@endforeach
+ @endforeach
 
 <div class="container margin_60">
     <div class="row">
@@ -116,12 +116,14 @@
         <h4>الردود</h4>
           <div id="comments">
                 <ol>
+                    @if($item->replies)
+
                     @foreach ($item->replies as $m)
                     <li>
-                        {{-- <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
+                        <img src="/discussion/images/ {{$m->reply_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" > --}}
                         <!---->
 
-                        <div class="avatar">
+                       <div class="avatar">
                             <a href="#"><img src="{{URL::asset('main/img/avatar1.jpg')}}" alt="Image">
                             </a>
                         </div>
@@ -135,10 +137,10 @@
                     </li>
                     @endforeach
                 </ol>
-            </div>
+           </div>
             <!-- End Comments -->
-        </div>
-
+         </div>
+         @endif
         <!-- End col-md-8-->
 
         <aside class="col-lg-3 add_bottom_30">
