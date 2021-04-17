@@ -104,7 +104,11 @@ class DiscussionController extends Controller
     {
             Date::setLocale('ar');
             $disc = Discussion::findorFail($id);
-            return view('web.com.singlediscussion', compact('disc'));
+            $recentdiscs = Discussion::orderByDesc('id')->get();
+            $subcat_id = $disc->subdiscussion->id;
+            $subcat = SubDiscussionCategory::findOrFail($subcat_id)->discussioncategory;
+            //$recentreplies = Reply::orderByDesc('id')->get();
+            return view('web.com.singlediscussion', compact('disc','subcat','recentdiscs'));
     }
 
 

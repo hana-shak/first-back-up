@@ -22,7 +22,7 @@ class ReplyController extends Controller
 
     public function index()
     {
-        //
+        
     }
 
 

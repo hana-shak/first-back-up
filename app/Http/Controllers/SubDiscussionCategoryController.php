@@ -11,7 +11,7 @@ class SubDiscussionCategoryController extends Controller
  {
     public function __construct(){
         Date::setLocale('ar');
-        $this->middleware('auth:admin')->except('onesubcat');
+        $this->middleware('auth:admin')->except('onesubcat', 'onecategory');
     }
     //This method to show single category discussion, lists all subs for this cat
     public function index($id)
@@ -177,13 +177,15 @@ class SubDiscussionCategoryController extends Controller
     //This method to show single category discussion, lists all subs for this cat
     public function onecategory($id){
 
+       
         $subcat = DiscussionCategory::findOrFail($id);
         $subs = $subcat->subdiscussions;
          //return $subs;
          return view('web.com.singlecategory',compact('subcat','subs'));
     }
 
-     //This method to show single sub category discussion
+     //This method to show single sub category discussion,
+     // list all discussions in this subdiscussion
      public function onesubcat($id)
      {
          $subdis = SubDiscussionCategory::findOrFail($id);

@@ -245,10 +245,10 @@ footer .gallery-image a {
 
     .main-menu ul > li i{float:left;}
 
-    /* Menu mobile second level */	
+    /* Menu mobile second level */
 	.main-menu ul li.submenu ul{border-left:none; border-right:1px solid #ededed;margin:0 25px 15px 0;}
 
-	/* Menu mobile 3rd level */	
+	/* Menu mobile 3rd level */
 	.main-menu ul li.submenu ul ul{border-left:inherit;border-right:none;margin:0 15px 0 0;}
 
 	.main-menu ul li.submenu ul ul {

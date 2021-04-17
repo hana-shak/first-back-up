@@ -124,5 +124,6 @@ Route::get('/tot','SubDiscussionCategoryController@tot');
 
 
 //All category and sub cats, single cat, single sub->all discussions
+Route::get('/community', 'DiscussionCategoryController@eczematee');
 Route::get('/', 'DiscussionCategoryController@eczematee');
 Route::get('/onecategory/{id}', 'SubDiscussionCategoryController@onecategory');

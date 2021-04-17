@@ -22,7 +22,7 @@
 
 
 <div class="container margin_60">
- <h5>   {{$disc->subdiscussion->name}}</h5>
+ <h5><span>{{$subcat->name}}<small>>></small></span>{{$disc->subdiscussion->name}}</h5>
 
     <div class="row">
 
@@ -30,12 +30,11 @@
              <div class="box_style_1">
                 <div class="post nopadding">
                     @if($disc->disc_image)
-                           <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" >
+                           <img src="/discussion/images/{{$disc->disc_image}}" alt="Image"   height="400px" width="100%" >
                     @else
-                     {{-- <h5> No PICTURE</h5> --}}
+                     {{-- <h5> No PICTURE</h5>  class="img-fluid" --}}
                      @endif
                     <div class="post_info clearfix">
-
 
                          <div class="post-left" id="custom-info">
                             <ul>
@@ -47,9 +46,7 @@
 
                                 </li>
                                 @endif
-                                {{-- <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date($disc->created_at->diffForHumans('Y-m-d'))}}</span> --}}
-                                {{-- <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::createFromDate($disc->created_at)->format('l j F Y H:i:s')}}</span> --}}
-                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($disc->created_at)->diffForHumans()}}</span>
+                                 {{-- <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($disc->created_at)->diffForHumans()}}</span> --}}
                                 <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($disc->created_at)->format('l j F Y ')}}</span>
                                 </li>
                                  {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>->format('Y-m-d') dddd, MMMM D, YYYY h:mm
@@ -149,19 +146,19 @@
 
                         <!---->
 
-                      <div class="avatar">
-                            <a href="#"><img src="{{URL::asset('main/img/avatar1.jpg')}}" alt="Image">
+                       <div class="avatar">
+                            <a href="#"><img src="{{URL::asset('main/img/useri_1.png')}}" alt="Image">
                             </a>
                         </div>
                         <div class="comment_right clearfix">
 
                             @if($m->anonymous)
-                            <div class="comment_info">
-                                رد بواسطة <a href="#">مجهول</a><span>|</span> {{$m->created_at}} <span>|</span><a href="#">Reply</a>
+
+                                رد بواسطة <a href="#">مجهول</a><span>|</span> {{Date::instance($m->created_at)->format('l j F Y ')}} <span>|</span><a href="#"></a>
                             </div>
                                 @else
                                 <div class="comment_info">
-                                    رد بواسطة <a href="#">{{$m->user->name}}</a><span>|</span> {{$m->created_at}} <span>|</span><a href="#">Reply</a>
+                                    رد بواسطة <a href="#">{{$m->user->name}}</a><span>|</span>{{Date::instance($m->created_at)->format('l j F Y ')}} <span>|</span><a href="#"></a>
                                 </div>
                                 @endif
 
@@ -174,13 +171,13 @@
                         </div>
                         @if(auth::id() == $m->user->id )
                         <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/repupdate/{{$m->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
-                        <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/repdelete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
+                        <div title="Code: 0xec80" class="the-icons col-md-3" class="mb-4"><i class="icon-trash-4"></i><a href="/repdelete/{{$m->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
                         @endif
 
                         @if(auth::id() !== $m->user->id)
-                        <div title="Code: 0xe885" class="the-icons col-md-3"><i class="icon-block"></i><a href="/report/{{$m->id}}">الابلاغ عن اساءة </a> <span class="i-name"></span><span class="i-code"></span></div>
+                        <div title="Code: 0xe885" class="the-icons col-md-3" class="mb-3"><i class="icon-block"></i><a href="/report/{{$m->id}}">الابلاغ عن اساءة </a> <span class="i-name"></span><span class="i-code"></span></div>
                         @endif
-
+<hr>
                     </li>
 
                     @endforeach
@@ -194,7 +191,7 @@
 
         <aside class="col-lg-3 add_bottom_30">
 
-            <div class="widget">
+            {{-- <div class="widget">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
@@ -202,20 +199,16 @@
                 </span>
                 </div>
                 <!-- /input-group -->
-            </div>
+            </div> --}}
             <!-- End Search -->
-            <hr>
-            <div class="widget" id="cat_blog">
-                <h4>Categories</h4>
+
+            <div ><h4> الفئات الفرعية لل {{$subcat->name}} </h4>
                 <ul>
-                    <li><a href="#">Places to visit</a>
+                    @foreach ($subcat->subdiscussions as $subcat )
+                    <li><a href="#">{{$subcat->name}}</a>
                     </li>
-                    <li><a href="#">Top tours</a>
-                    </li>
-                    <li><a href="#">Tips for travellers</a>
-                    </li>
-                    <li><a href="#">Events</a>
-                    </li>
+
+                    @endforeach
                 </ul>
             </div>
             <!-- End widget -->
@@ -223,35 +216,27 @@
             <hr>
 
             <div class="widget">
-                <h4>Recent post</h4>
+                <h4>أحدث المشاركات</h4>
                 <ul class="recent_post">
+                    @foreach ( $recentdiscs as $dis )
                     <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
+                        <i class="icon-calendar-empty"></i>
+                        {{Date::instance($dis->created_at)->format('l j F Y ')}}
+                        <div><a href="#"> {{$dis->disc_title}}</a>
                         </div>
                     </li>
-                    <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
-                        </div>
-                    </li>
+                    @endforeach
+
                 </ul>
             </div>
             <!-- End widget -->
             <hr>
             <div class="widget tags">
-                <h4>Tags</h4>
-                <a href="#">Lorem ipsum</a>
-                <a href="#">Dolor</a>
-                <a href="#">Long established</a>
-                <a href="#">Sit amet</a>
-                <a href="#">Latin words</a>
-                <a href="#">Excepteur sint</a>
+                <h4>الإعلانات</h4>
+                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
+                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
+
+               <img>
             </div>
             <!-- End widget -->
 

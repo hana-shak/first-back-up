@@ -31,7 +31,7 @@
              <div class="box_style_1">
                 <div class="post nopadding">
                     @if($item->disc_image)
-                           <img src="/discussion/images/{{$item->disc_image}}" alt="Image" class="img-fluid"   height="35%" width="70%" >
+                           <img src="/discussion/images/{{$item->disc_image}}" alt="Image" height="400px" width="100%" >
                     @else
                     {{-- <h5> No PICTURE</h5> --}}
                     @endif
@@ -48,7 +48,7 @@
                                 {{-- <li><i class="icon-tags"></i>الناشر<a href="#profilepage">{{$user->name}}</a> --}}
                                 </li>
                                 @endif
-                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{$item->created_at}}</span>
+                                <li><i class="icon-calendar-empty"></i>كتب بتاريخ <span>{{Date::instance($item->created_at)->format('l j F Y ')}}</span>
                                 </li>
                                 {{-- <li><i class="icon-inbox-alt"></i>In <a href="#"> </a>
                                 </li>
@@ -62,7 +62,14 @@
                     <p>
                         {{$item->disc_body}}
                     </p>
-                    <div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
+
+                    @if($item->replies->count() !== 0)
+                    <div class="post-right"><i class="icon-comment"></i><a href="#">{{$item->replies->count()}}  </a>رد</div>
+                    @else
+                    <div class="post-right"><i class="icon-comment"></i><a href="#">0</a>رد</div>
+                    @endif
+
+
                     @if(auth::id() == $item->user->id )
                     <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$item->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
                     <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$item->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>

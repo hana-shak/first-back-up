@@ -130,7 +130,11 @@
                         </div>
                     </div>
                     <nav class="col-9">
-                        <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+
+
+
+
+                                        <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                         <div class="main-menu">
                             <div id="header_menu">
                                 <img src="img/logo_sticky.png" width="160" height="34" alt="City tours">
@@ -177,12 +181,14 @@
 
                             </ul>
                         </div><!-- End main-menu -->
-                        <ul id="top_tools">
-                            <li>
-                                <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
+                         <ul id="top_tools">
+                            <li><h6>اسأل مجرب ولا تسأل حكيم</h6>
+
+                                {{-- <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a> --}}
                             </li>
 
                         </ul>
+
                     </nav>
                 </div>
             </div><!-- container -->
@@ -255,7 +261,7 @@
         <!--Footer-->
         <footer class="revealed">
             <div class="container">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-4">
                         <h3>Need help?</h3>
                         <a href="tel://004542344599" id="phone">+45 423 445 99</a>
@@ -299,11 +305,11 @@
                             </select>
                         </div>
                     </div>
-                </div><!-- End row -->
+                </div><!-- End row --> --}}
                 <div class="row">
                     <div class="col-md-12">
                         <div id="social_footer">
-                            <ul>
+                            {{-- <ul>
                                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                                 <li><a href="#"><i class="icon-twitter"></i></a></li>
                                 <li><a href="#"><i class="icon-google"></i></a></li>
@@ -311,8 +317,8 @@
                                 <li><a href="#"><i class="icon-pinterest"></i></a></li>
                                 <li><a href="#"><i class="icon-vimeo"></i></a></li>
                                 <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                            </ul>
-                            <p>© Eczematee 2021</p>
+                            </ul> --}}
+                            <p><strong> </strong>أكزيمتي 2020 ©</p>
                         </div>
                     </div>
                 </div><!-- End row -->
@@ -322,14 +328,14 @@
         <div id="toTop"></div><!-- Back to top button -->
 
         <!-- Search Menu -->
-        <div class="search-overlay-menu">
+        {{-- <div class="search-overlay-menu">
             <span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
             <form role="search" id="searchform" method="get">
                 <input value="" name="q" type="search" placeholder="Search..." />
                 <button type="submit"><i class="icon_set_1_icon-78"></i>
                 </button>
             </form>
-        </div><!-- End Search Menu -->
+        </div><!-- End Search Menu --> --}}
 
         <!-- Sign In Popup -->
         <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
