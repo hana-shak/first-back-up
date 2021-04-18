@@ -4,8 +4,7 @@
 @endsection
 
 @section('main')
-<span>
-<h5>{{$sub->discussioncategory->name}} >>>  {{$sub->name}}</h5></span>
+
 {{--
 @foreach($sub->discussions as $item)
 
@@ -16,6 +15,7 @@
 @endforeach --}}
 
 <div class="container margin_60">
+    <h5><span>{{$sub->discussioncategory->name}}<small>>> {{$sub->name}}</small></span></h5>
     <div class="row">
         <div class="col-md-8">
           <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
@@ -51,8 +51,21 @@
         </div>
 
         <div class="col-md-4">
-            <div class="box_style_1">
+
+            <div class="widget">
+                <div class="widget tags">
+                <h4>الإعلانات</h4>
+                <hr>
+                {{-- <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
+                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3"> --}}
+
+               <img>
             </div>
+
+
+
+
+
         </div>
 
 

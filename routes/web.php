@@ -127,3 +127,9 @@ Route::get('/tot','SubDiscussionCategoryController@tot');
 Route::get('/community', 'DiscussionCategoryController@eczematee');
 Route::get('/', 'DiscussionCategoryController@eczematee');
 Route::get('/onecategory/{id}', 'SubDiscussionCategoryController@onecategory');
+
+//User Profile
+Route::get('/profile', 'DiscussionController@discussionPerUser');
+Route::get('/uedit/{id}','UserController@edit');
+Route::get('/useredit/{id}','UserController@pro');
+Route::post('/useredit/{id}','UserController@update');

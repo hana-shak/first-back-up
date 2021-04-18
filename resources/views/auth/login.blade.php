@@ -8,13 +8,13 @@
         <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 <div id="login">
-                        <div class="text-center"><img src="img/logo_sticky.png" alt="Image" data-retina="true" ></div>
+                        <div class="text-center"><img src="{{URL::asset('fedash/assets/media/image/five.png')}}"  height='95' width="250" alt="Image" data-retina="true" ></div>
                         <hr>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                        <a href="#0" class="social_bt facebook">Login with Facebook</a>
+                        {{-- <a href="#0" class="social_bt facebook">Login with Facebook</a>
                         <a href="#0" class="social_bt google">Login with Google</a>
-                        <div class="divider"><span>Or</span></div>
+                        <div class="divider"><span>Or</span></div> --}}
                             <div class="form-group">
                                 <label>البريد الالكتروني</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Username">

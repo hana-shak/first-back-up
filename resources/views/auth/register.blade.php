@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 <div id="login">
-                        <div class="text-center"><img src="img/logo_sticky.png" alt="Image" data-retina="true" ></div>
+                        <div class="text-center"><img src="{{URL::asset('fedash/assets/media/image/five.png')}}"  height='95' width="250" alt="Image" data-retina="true" ></div>
                         <hr>
                        <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -51,7 +51,10 @@
                                 <label>تأكيد كلمة المرور</label>
                                 <input type="password"  class="form-control" name="password_confirmation" required autocomplete="new-password" id="password2" placeholder="Confirm password">
                             </div>
-                            <div id="pass-info" class="clearfix"></div>
+                            <div id="pass-info" class="clearfix">
+                               من خلال الضغط على زر التسجيل سيتم تلقائيا الموافقة على <a href="/agreement">الشروط والأحكام الخاصة بأكزيمتي </a>
+                            </div>
+
                             <button class="btn_full">تسجيل</button>
                         </form>
                     </div>

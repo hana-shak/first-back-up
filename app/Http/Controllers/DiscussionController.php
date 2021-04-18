@@ -15,7 +15,7 @@ class DiscussionController extends Controller
 {
     public function __construct(){
         Date::setLocale('ar');
-        $this->middleware('auth')->except('showsingleDiscussion','showAllDiscussions');
+        $this->middleware('auth')->except('showsingleDiscussion','showAllDiscussions','singlesubdiscussion');
     }
 
     public function index()
@@ -122,7 +122,8 @@ class DiscussionController extends Controller
     //this for profile/discussions section
     public function discussionPerUser(){
         $discs =auth()->user()->discussions;
-        return ($discs);
+        //dd($discs);
+        return view ('web.com.profile',compact('discs'));
     }
 
     public function store(Request $request)

@@ -13,7 +13,7 @@ class ReportController extends Controller
 
     public function __construct(){
         Date::setLocale('ar');
-        $this->middleware('auth:admin')->except('create');
+        $this->middleware('auth:admin, auth');
     }
 
     public function index()
@@ -29,12 +29,10 @@ class ReportController extends Controller
     {
         $reply = Reply::findOrFail($id);
         Report::create([
-            'user_id'=>$reply->user->id,
+            'user_id'=>auth::id(),
             'replies_id'=> $id,
         ]);
         return redirect()->back();
-
-
     }
 
 
@@ -47,7 +45,10 @@ class ReportController extends Controller
     public function show($id)
     {
         $singlereport = Report::findOrFail($id);
-       //dd($singlereport->reply->reply_body);
+        //$repdata = $singlereport->reply->user->name;
+        //dd($repdata);
+        // $userrep = $singlereport->user;
+        // dd($userrep );
        //dd($singlereport->user->name);
 
         return view('dashboard.singlereported',compact('singlereport'));
@@ -65,7 +66,7 @@ class ReportController extends Controller
         //
     }
 
-    //
+    //to delete reply from the db
     public function destroyReply($id)
     {
        $rep = Reply::findOrFail($id);

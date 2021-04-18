@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DiscussionCategory;
 use App\SubDiscussionCategory;
+use App\Discussion;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 
@@ -176,12 +177,12 @@ class SubDiscussionCategoryController extends Controller
     //Public Website
     //This method to show single category discussion, lists all subs for this cat
     public function onecategory($id){
-
-       
+        $dis = Discussion::orderByDesc('id')->get();
+        $maincat = DiscussionCategory::orderByDesc('id')->get();
         $subcat = DiscussionCategory::findOrFail($id);
         $subs = $subcat->subdiscussions;
          //return $subs;
-         return view('web.com.singlecategory',compact('subcat','subs'));
+         return view('web.com.singlecategory',compact('subcat','subs','maincat','dis'));
     }
 
      //This method to show single sub category discussion,

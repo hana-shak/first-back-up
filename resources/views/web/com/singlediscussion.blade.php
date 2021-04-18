@@ -22,7 +22,7 @@
 
 
 <div class="container margin_60">
- <h5><span>{{$subcat->name}}<small>>></small></span>{{$disc->subdiscussion->name}}</h5>
+ <h5><span>{{$subcat->name}}<small>>>{{$disc->subdiscussion->name}}</small></span></h5>
 
     <div class="row">
 

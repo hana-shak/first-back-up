@@ -124,7 +124,7 @@ class AdminController extends Controller
         Admin::where('id', $id)->update([
             "name"           => $request->name,
             "email"          => $request->email,
-            "password"       => $request->password,
+            "password"       =>  Hash::make($request->password),
             'mobile'         => $request->mobile,
             'role'           => $request->role,
         ]);

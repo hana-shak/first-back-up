@@ -182,7 +182,7 @@
                             </ul>
                         </div><!-- End main-menu -->
                          <ul id="top_tools">
-                            <li><h6>اسأل مجرب ولا تسأل حكيم</h6>
+                            <li><h6>اسأل مجرب واستفيد </h6>
 
                                 {{-- <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a> --}}
                             </li>
