@@ -56,10 +56,9 @@
                 <div class="widget tags">
                 <h4>الإعلانات</h4>
                 <hr>
-                {{-- <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
-                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3"> --}}
-
-               <img>
+                <img src="/Ads/shealogo.jpg" alt="Image" width="250px" class="mb-3">
+                <img src="/Ads/lava.png" alt="Image" width="250px" class="mb-3">
+                {{-- sheasecretslogo.png --}}
             </div>
 
 

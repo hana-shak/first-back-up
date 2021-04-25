@@ -183,15 +183,24 @@ class DiscussionController extends Controller
 
     public function showafterupdate($id){
 
-        $disc = Discussion::findOrFail($id);
-        return view('web.com.singlediscussion', compact('disc'));
+
+        $disc = Discussion::findorFail($id);
+        $recentdiscs = Discussion::orderByDesc('id')->get();
+        $subcat_id = $disc->subdiscussion->id;
+        $subcat = SubDiscussionCategory::findOrFail($subcat_id)->discussioncategory;
+
+
+        return view('web.com.singlediscussion', compact('disc','subcat','recentdiscs'));
 
     }
 
     public function destroy(Discussion $discussion, $id)
     {
+        $dis = Discussion::findOrFail($id);
         Discussion::destroy($id);
-        return ($this->showAllDiscussions());
+        $sub = $dis->subdiscussion->id;
+        // return ($this->showAllDiscussions());
+        return ($this->singlesubdiscussion($sub));
     }
 
     public function singlesubdiscussion($id){
@@ -199,6 +208,47 @@ class DiscussionController extends Controller
         $sub = SubDiscussionCategory::findOrFail($id);
         return view('web.com.singlesubdiscussion',compact('sub'));
     }
+
+    public function replycreate(Request $request)
+
+    {
+        $id = $request->invisible;
+        if(!$request->hasFile('image') && !$request->message ){
+
+            return ($this->showafterupdate($id));
+        }else{
+
+        $replier = auth::user();
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('discussion/images', $filename);
+        }else{
+            $filename = "0";
+        }
+
+        if($request->has('anonymous')){
+            $anon = 1;
+        }else{
+            $anon = 0;
+        }
+
+        Reply::create([
+            'discussions_id'  =>  $request->invisible,
+            'user_id'         =>  $replier->id,
+            'reply_body'      =>  $request->message,
+            'reply_image'     =>  $filename,
+            'anonymous'       =>  $anon,
+        ]);
+
+
+        return ($this->showafterupdate($id));
+
+       // return redirect()->route('singlediscussion');
+        }
+    }
+
 
 
 

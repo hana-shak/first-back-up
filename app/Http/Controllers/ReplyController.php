@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Reply;
 use App\Discussion;
+use App\SubDiscussionCategory;
+use App\DiscussionCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Date\Date;
@@ -22,7 +24,7 @@ class ReplyController extends Controller
 
     public function index()
     {
-        
+
     }
 
 
@@ -57,6 +59,7 @@ class ReplyController extends Controller
             'anonymous'       =>  $anon,
         ]);
 
+        $id = $request->invisible;
         return redirect()->back();
 
        // return redirect()->route('singlediscussion');
@@ -139,8 +142,17 @@ class ReplyController extends Controller
 
     public function updatedreply($id)
     {
+            // $disc = Discussion::findorFail($id);
+            // return view('web.com.singlediscussion', compact('disc'));
+
+
             $disc = Discussion::findorFail($id);
-            return view('web.com.singlediscussion', compact('disc'));
+            $recentdiscs = Discussion::orderByDesc('id')->get();
+            $subcat_id = $disc->subdiscussion->id;
+            $subcat = SubDiscussionCategory::findOrFail($subcat_id)->discussioncategory;
+
+
+            return view('web.com.singlediscussion', compact('disc','subcat','recentdiscs'));
     }
     // public function dddd(){
     //     $x = Reply::findOrFail(3);

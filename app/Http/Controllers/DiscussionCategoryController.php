@@ -22,7 +22,7 @@ class DiscussionCategoryController extends Controller
         return view('dashboard.discussioncategory');
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -119,7 +119,7 @@ class DiscussionCategoryController extends Controller
     {
 
 
-
+        $this->validation($request);
         if ($request->hasFile('image')) {
          $file = $request->file('image');
          $ext = $file->getClientOriginalExtension();
@@ -129,7 +129,7 @@ class DiscussionCategoryController extends Controller
           else {
          $filename ='1611290375.jpg';
              }
-     $this->validation($request);
+
      DiscussionCategory::where('id',$id)->update([
         'name'           =>  $request->name,
         'description'    =>  $request->description,

@@ -4,17 +4,19 @@
 @endsection
 
 @section('main')
-<span>
+
 {{-- <h5>{{$sub->discussioncategory->name}} >>>  {{$sub->name}}</h5></span> --}}
 
-<h3>{{$subcat->name}}</h3>
+
 
 
 <div class="container margin_60">
     <div class="row">
+
         <div class="col-md-8">
 
 <div class="container ">
+    {{-- <h3>{{$subcat->name}}</h3> --}}
     <div class="row">
       @foreach($subs as $item)
           <div class="col-md-4 wow zoomIn" data-wow-delay="0.1s">
@@ -44,7 +46,7 @@
             <h4> الفئات الرئيسية  </h4>
             <ul>
                 @foreach ($maincat as $cat )
-                <li><a href="#">{{$cat->name}}</a>
+                <li><a href="/onecategory/{{$cat->id}}">{{$cat->name}}</a>
                 </li>
                 @endforeach
             </ul>
@@ -58,7 +60,7 @@
                 <li>
                     <i class="icon-calendar-empty"></i>
                     {{Date::instance($dis->created_at)->format('l j F Y ')}}
-                    <div><a href="#"> {{$dis->disc_title}}</a>
+                    <div><a href="/single/{{$dis->id}}"> {{$dis->disc_title}}</a>
                     </div>
                 </li>
                 @endforeach
@@ -69,8 +71,9 @@
         <hr>
         <div class="widget tags">
             <h4>الإعلانات</h4>
-            <img src="/discussion/images/{{$dis->disc_image}}" alt="Image" width="250px" class="mb-3">
-            <img src="/discussion/images/{{$dis->disc_image}}" alt="Image" width="250px" class="mb-3"> 
+            <img src="/Ads/aminalogo.png" alt="Image" width="250px" class="mb-3">
+            <img src="/Ads/oliveoil.png" alt="Image" width="250px" class="mb-3">
+
 
            <img>
         </div>

@@ -106,7 +106,7 @@ Route::get('/delete/{id}','DiscussionController@destroy');
 
 
 //Reply Routes
-Route::post('/reply','ReplyController@create');
+Route::post('/reply','DiscussionController@replycreate');
 Route::get('/latestreply','ReplyController@latestReply');
 Route::post('/repupdate/{id}','ReplyController@update');
 Route::get('/repupdate/{id}','ReplyController@edit');

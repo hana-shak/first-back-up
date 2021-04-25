@@ -174,10 +174,10 @@
 
                                     </ul> --}}
                                 </li>
-                                <li class="submenu">
+                                {{-- <li class="submenu">
                                     <a href="/about" class="show-submenu">من نحن</a>
 
-                                </li>
+                                </li> --}}
 
                             </ul>
                         </div><!-- End main-menu -->
@@ -216,8 +216,8 @@
                 <!-- End row -->
 
             </div>
-        <div class="white_bg">
-                <div class="container margin_60">
+
+
                           @yield('main')
 
                 </div>

@@ -27,7 +27,7 @@
     <!-- File input -->
    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
         <label for="exampleFormControlFile1">اختيار صورة</label>
-       <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="{{$singlediscussioncategory->image}}">
+       <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" value="">
        <hr>
        <img src="/discussion/images/{{$singlediscussioncategory->image}}" alt="" width="100px" height="100px">
        <hr>

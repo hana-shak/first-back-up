@@ -187,30 +187,27 @@
             <!-- End Comments -->
         </div>
 
+
+
         <!-- End col-md-8-->
 
         <aside class="col-lg-3 add_bottom_30">
 
-            {{-- <div class="widget">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-                </span>
+             <div class="widget">
+                <div ><h4> الفئات الفرعية لل {{$subcat->name}} </h4>
+                    <ul>
+                        @foreach ($subcat->subdiscussions as $subcat )
+                        <li><a href="/dispersub/{{$subcat->id}}">{{$subcat->name}}</a>
+                        </li>
+
+                        @endforeach
+                    </ul>
                 </div>
-                <!-- /input-group -->
-            </div> --}}
+
+            </div>
             <!-- End Search -->
 
-            <div ><h4> الفئات الفرعية لل {{$subcat->name}} </h4>
-                <ul>
-                    @foreach ($subcat->subdiscussions as $subcat )
-                    <li><a href="#">{{$subcat->name}}</a>
-                    </li>
 
-                    @endforeach
-                </ul>
-            </div>
             <!-- End widget -->
 
             <hr>
@@ -222,7 +219,7 @@
                     <li>
                         <i class="icon-calendar-empty"></i>
                         {{Date::instance($dis->created_at)->format('l j F Y ')}}
-                        <div><a href="#"> {{$dis->disc_title}}</a>
+                        <div><a href="/single/{{$dis->id}}"> {{$dis->disc_title}}</a>
                         </div>
                     </li>
                     @endforeach
@@ -233,13 +230,30 @@
             <hr>
             <div class="widget tags">
                 <h4>الإعلانات</h4>
-                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
-                <img src="/discussion/images/{{$disc->disc_image}}" alt="Image" width="250px" class="mb-3">
 
-               <img>
+                <img src="/Ads/soap.png" alt="Image" width="250px" class="mb-3">
+                <img src="/Ads/soapss.png" alt="Image" width="250px" class="mb-3">
+
+
+
             </div>
             <!-- End widget -->
 
+            {{-- <div class="widget">
+                <h4> اقتباسات </h4>
+                <ul class="recent_post">
+
+                    {{-- @foreach ( $recentdiscs as $dis )
+                    <li>
+                        <i class="icon-calendar-empty"></i>
+                        {{Date::instance($dis->created_at)->format('l j F Y ')}}
+                        <div><a href="#"> {{$dis->disc_title}}</a>
+                        </div>
+                    </li>
+                    @endforeach --}}
+
+                </ul>
+            </div>
         </aside>
         <!-- End aside -->
 

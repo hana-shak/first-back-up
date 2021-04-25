@@ -16,18 +16,17 @@
 <table class="table table-bordered table-striped table-responsive-stack">
     <thead class="thead-light">
       <tr>
-        <th>عنوان الرد المشتكى عليه</th>
-        <th>مناقشة الرئيسية </th>
-        <th>صاحب الرد</th>
+        <th>  عدد المستخدمين الكلي </th>
+        <th>عدد المناقشات الكلي</th>
+        <th>عدد الردود</th>
         {{-- <th>صاحب الشكوى</th> --}}
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td></td>
-        <td>
-            </td>
-         <td></td>
+        <td>10</td>
+        <td>20</td>
+         <td>60</td>
         {{-- <td></td> --}}
       </tr>
 
