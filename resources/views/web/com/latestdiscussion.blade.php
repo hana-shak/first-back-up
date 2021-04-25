@@ -70,6 +70,17 @@
                     @endif
 
 
+                    {{$item->likes->count()}} <i class="icon-thumbs-up"></i> لايك
+                    @auth
+
+                    @if(!($item->likedBy(Auth::id())))
+                    <div title="Code: 0xe843" class="the-icons col-md-3"><i class="icon-thumbs-up"></i><a href="/like/{{$item->id}}">لايك </a><span class="i-name"></span><span class="i-code"></span></div>
+                    @else
+                    <div title="Code: 0xe842" class="the-icons col-md-3"><i class="icon-thumbs-down"></i><a href="/unlike/{{$item->id}}">مولايك </a> <span class="i-name"></span><span class="i-code"></span></div>
+                    @endif
+                    @endauth
+
+
                     @if(auth::id() == $item->user->id )
                     <div title="Code: 0xec78" class="the-icons col-md-3"><i class="icon-edit-2"></i><a href="/update/{{$item->id}}">تعديل </a> <span class="i-name"></span><span class="i-code"></span></div>
                     <div title="Code: 0xec80" class="the-icons col-md-3"><i class="icon-trash-4"></i><a href="/delete/{{$item->id}}">حذف </a> <span class="i-name"></span><span class="i-code"></span></div>
@@ -152,64 +163,14 @@
 
         <aside class="col-lg-3 add_bottom_30">
 
-            <div class="widget">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-                </span>
-                </div>
-                <!-- /input-group -->
-            </div>
-            <!-- End Search -->
-            <hr>
-            <div class="widget" id="cat_blog">
-                <h4>Categories</h4>
-                <ul>
-                    <li><a href="#">Places to visit</a>
-                    </li>
-                    <li><a href="#">Top tours</a>
-                    </li>
-                    <li><a href="#">Tips for travellers</a>
-                    </li>
-                    <li><a href="#">Events</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- End widget -->
-
-            <hr>
-
-            <div class="widget">
-                <h4>Recent post</h4>
-                <ul class="recent_post">
-                    <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="icon-calendar-empty"></i> 16th July, 2020
-                        <div><a href="#">It is a long established fact that a reader will be distracted </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- End widget -->
-            <hr>
             <div class="widget tags">
-                <h4>Tags</h4>
-                <a href="#">Lorem ipsum</a>
-                <a href="#">Dolor</a>
-                <a href="#">Long established</a>
-                <a href="#">Sit amet</a>
-                <a href="#">Latin words</a>
-                <a href="#">Excepteur sint</a>
+                <h4>الإعلانات</h4>
+                <hr>
+                <img src="/Ads/aminalogo.png" alt="Image" width="250px" class="mb-3">
+                <img src="/Ads/oliveoil.png" alt="Image" width="250px" class="mb-3">
+
+
+
             </div>
             <!-- End widget -->
 

@@ -13,6 +13,16 @@
 
 
 
+<div class="container margin_60">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form_title">
+                <h3><strong><i class="icon-pencil"></i>تعديل مناقشة</strong></h3>
+
+                <p>تعديل مناقشة</p>
+            </div>
+            <div class="step">
+                <div id="message-contact"></div>
 
 <h4>شارك بإجابة</h4>
 <form action="/repupdate/{{$reply->id}}" method="post" enctype="multipart/form-data">
@@ -40,4 +50,23 @@
         <input type="submit" class="btn_1" value="شارك بإجابة" />
     </div>
 </form>
+            </div>
+            </div>
+
+
+            <div class="col-md-4">
+
+                <h4>الإعلانات</h4>
+                <hr>
+                <img src="/Ads/aminalogo.png" alt="Image" width="250px" class="mb-3">
+                <img src="/Ads/oliveoil.png" alt="Image" width="250px" class="mb-3">
+
+
+
+        </div>
+        <!-- End col-md-4 -->
+    </div>
+    <!-- End row -->
+</div>
+<!-- End container -->
 @endsection

@@ -22,8 +22,8 @@
           <div class="col-md-4 wow zoomIn" data-wow-delay="0.1s">
                   <div class="img_container">
                       <a href="/dispersub/{{$item->id}}">
+                        
                           <img src="/discussion/images/{{$item->image}}" width="300" height="300"  alt="Image">
-
                       </a>
                   </div>
 

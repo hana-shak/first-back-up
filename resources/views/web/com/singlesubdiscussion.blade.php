@@ -26,16 +26,38 @@
 
               <div class="col-lg-4 col-md-4 mb-2">
                   <div class="img_list" >
-                     <a href="/single/{{$item->id}}"><img src="/discussion/images/{{$item->disc_image}}" alt="Image" height="50px">
-                     </a>
+
+                    @if($item->disc_image)
+                    <a href="/single/{{$item->id}}"><img src="/discussion/images/{{$item->disc_image}}" alt="Image" height="50px">
+                    </a>
+                  @else
+                  <a href="/single/{{$item->id}}">
+                   <img src="/discussion/images/discussion-featured.jpg" alt="Image" height="50px"> \
+                  </a>
+                @endif
+
+
+
                   </div>
              </div>
+
 
 
              <div class="col-lg-8 col-md-8">
                   <div class="tour_list_desc">
                          <h3><strong>{{$item->disc_title}}</strong> </h3>
-                         <p> <span> الناشر</span>{{$item->user->name}} , <span> بتاريخ</span> {{Date::instance($item->created_at)->diffForHumans()}}</p>
+                         @if($item->anonymous)
+
+                                <p>الناشر<a href="#index">مجهول</a>
+                                    <span> بتاريخ</span> {{Date::instance($item->created_at)->diffForHumans()}}
+                                </p>
+                                @else
+                                <p>الناشر<a href="#profilepage">{{$item->user->name}} </a>
+                                    <span> بتاريخ</span> {{Date::instance($item->created_at)->diffForHumans()}}
+                                </p>
+                                @endif
+
+                         {{-- <p> <span> الناشر</span>{{$item->user->name}} , <span> بتاريخ</span> {{Date::instance($item->created_at)->diffForHumans()}}</p> --}}
                          <p> <span>{{$item->replies->count()}}</span>رد , <span>  {{$item->likes->count()}}</span>لايك</p>
                         <p>{{$item->disc_body}}</p>
                  </div>

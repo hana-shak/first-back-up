@@ -95,7 +95,11 @@
         <div class="col-md-4">
 
             <h4>الإعلانات</h4>
-            <hr>
+                <hr>
+                <img src="/Ads/aminalogo.png" alt="Image" width="250px" class="mb-3">
+                <img src="/Ads/oliveoil.png" alt="Image" width="250px" class="mb-3">
+
+
         </div>
         <!-- End col-md-4 -->
     </div>
